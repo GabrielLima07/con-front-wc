@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "../NavbarAdm2.jsx/MenuAdm"
-//import Navbar from "../NavbarAdm/navbarAdm";
 import "tailwindcss/tailwind.css";
 import cadastro from "../../assets/HomeAdm/cadastro.png"
 import ticket from "../../assets/HomeAdm/tickets.png"
