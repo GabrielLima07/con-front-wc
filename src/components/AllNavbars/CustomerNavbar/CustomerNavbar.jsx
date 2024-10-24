@@ -91,15 +91,7 @@ const CustomerNavbar=()=> {
                 
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full bg-greene p-1 text-white border-greene hover:text-white hover:border-greene focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-greene"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="h-6 w-6 " />
-            </button>
-
+       
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-2">
               <div className='flex items-center space-x-2'>
@@ -120,17 +112,17 @@ const CustomerNavbar=()=> {
               >
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                    Your Profile
+                    Seu Perfil
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Settings
+                  Configurações
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Sign out
+                    Sair
                   </a>
                 </MenuItem>
               </MenuItems>
