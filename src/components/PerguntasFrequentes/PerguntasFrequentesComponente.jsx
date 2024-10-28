@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Footer from './Footer';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar';
+import Loading from '../Loading/Loading';
 
 function PerguntasFrequentes() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -36,6 +38,10 @@ function PerguntasFrequentes() {
       answer: "Se você tiver outras perguntas, entre em contato com nosso suporte para obter mais informações."
     }
   ];
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div>

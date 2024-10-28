@@ -4,6 +4,7 @@ import getDepartments from '../../services/department/getDepartments';
 import Modal from '../AdminTicketsModal/Modal';
 import putTicketDepartment from '../../services/ticket/putTicketDepartment';
 import putTicketEmployee from '../../services/ticket/putTicketEmployee';
+import Loading from './../Loading/Loading';
 
 const MainContent = () => {
   const [tickets, setTickets] = useState([]);
@@ -150,6 +151,12 @@ const MainContent = () => {
 
       {/* tabela */}
       <div className="flex flex-col items-center relative overflow-x-auto">
+        {
+          tickets.length == 0 
+          ? 
+          <Loading />
+          :
+        
         <table className="w-10/12 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-300">
           <thead className="text-gray-900 uppercase bg-gray-50">
             <tr>
@@ -165,7 +172,8 @@ const MainContent = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredTickets.map((ticket) => (
+            {
+            filteredTickets.map((ticket) => (
               <tr 
                 className="hover:bg-gray-50 dark:hover:bg-gray-50 text-gray-600"
                 onClick={() => handleRowClick(ticket)}
@@ -202,6 +210,7 @@ const MainContent = () => {
             ))}
           </tbody>
         </table>
+        }
       </div>
       <div className="pb-16"></div>
       <Modal 

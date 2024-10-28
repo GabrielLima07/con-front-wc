@@ -5,11 +5,7 @@ import relogio from '../../assets/images/relogio.png';
 import email from '../../assets/images/email.png';
 import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar';
 import createTicket from '../../services/ticket/postTicketData';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const token = sessionStorage.getItem("token");
-
-import createTicket from '../../services/ticket/postTicketData';
+import Loading from '../Loading/Loading';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const token = sessionStorage.getItem("token");
@@ -20,6 +16,8 @@ function CreateTicket() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const id = sessionStorage.getItem("userId");
+  const [isLoading, setIsLoading] = useState(false);
+
   function getCurrentDate() {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
@@ -63,18 +61,25 @@ function CreateTicket() {
       
     };
 
-    // Chama a função para criar o ticket
-    const responseStatus = await createTicket(ticketData);
+    try {
+      setIsLoading(true)
+      // Chama a função para criar o ticket
+      const responseStatus = await createTicket(ticketData);
 
-    if (responseStatus === '201') {
-      alert('Ticket enviado com sucesso!');
-      // Limpar campos após envio
-      setDepartmentId('');
-      setTitle('');
-      setDescription('');
-    } else {
-      alert('Erro ao enviar o ticket. Tente novamente.');
-      console.log(responseStatus);
+      if (responseStatus === '201') {
+        alert('Ticket enviado com sucesso!');
+        // Limpar campos após envio
+        setDepartmentId('');
+        setTitle('');
+        setDescription('');
+      } else {
+        alert('Erro ao enviar o ticket. Tente novamente.');
+        console.log(responseStatus);
+      }
+    } catch (error) {
+      console.log("Error creating ticket")
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -85,7 +90,11 @@ function CreateTicket() {
         <div className="flex-grow flex flex-col md:flex-row">
           <div className="flex w-full md:w-1/2 bg-gray-100 p-8 items-center justify-center">
             <div className="w-full max-w-md p-4">
-              <h2 className="text-2xl font-bold mb-6 text-center">Criação de Ticket</h2>
+              <h2 className="text-2xl font-bold mb-6 text-center">Abertura de Ticket</h2>
+              {isLoading
+              ?
+              <Loading />
+              :
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label htmlFor="department" className="block text-gray-700">Departamento</label>
@@ -130,6 +139,7 @@ function CreateTicket() {
                   Enviar
                 </button>
               </form>
+              }
             </div>
           </div>
           <div className="flex w-full md:w-1/2 bg-white p-8 items-center justify-center">

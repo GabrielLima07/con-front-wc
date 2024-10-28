@@ -14,6 +14,7 @@ import PerguntasFrequentes from './pages/PerguntasFrequentes';
 import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
+import ModalCliente from './pages/ModalClientePage';
 
 
 function Main() {
@@ -29,8 +30,8 @@ function Main() {
         {/* Acesso livre */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        {/* <Route path="/teste" element={<CentralDeAjudaPage/>}/> */}
-        {/* <Route path="/homeAdm" element={<HomeAdmPage />} /> */}
+        <Route path="/modalCliente" element={<ModalCliente/>}/> 
+      
 
         {/* Apenas admin */}
         <Route

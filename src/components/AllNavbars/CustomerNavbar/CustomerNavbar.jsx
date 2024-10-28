@@ -4,15 +4,20 @@ import { useState, useEffect } from 'react'
 
 import getCustomerData from '../../../services/customer/getCustomerData';
 import profilepic from "../../../assets/funcionario/perfil.png";
+import Loading from '../../Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const CustomerNavbar=()=> {
   const navigation = [
-    { name: 'Meus Tickets', href: '#', current: true },
-    { name: 'Central de Ajuda', href: '#', current: false },
+    { name: 'Meus Tickets', href: '/Create-Ticket', current: true },
+    { name: 'Central de Ajuda', href: '/central-de-ajuda', current: false },
     { name: 'FAQ', href: '/Perguntas-Frequentes', current: false },
     
   ]
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+
   const getCustomerInfo = async()=>{
     try{
       let name = await getCustomerData(sessionStorage.getItem("userId"))
@@ -25,7 +30,12 @@ const CustomerNavbar=()=> {
     }
   }
 
+  const getUsername = () => {
+    setUsername(sessionStorage.getItem("username"))
+  }
+
   useEffect(() => {
+    getUsername();
     getCustomerInfo();
   }, []);
   
@@ -34,14 +44,12 @@ const CustomerNavbar=()=> {
     sessionStorage.clear()
   }
   
-  
-  
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
   if (!username) {
-    return <div>Loading...</div>;
+    <Loading />
   }
   
   return (
@@ -57,19 +65,20 @@ const CustomerNavbar=()=> {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center ">
-             <h1 className='text-white pb-1 text-lg'>WayClient</h1>
+             <h1 className='text-white pb-1 text-lg cursor-pointer' onClick={() => navigate("/clienteHome")}>WayClient</h1>
             </div>
             <div className="hidden sm:ml-6 sm:block ">
               <div className="flex space-x-4 text-white mt-5">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
+                    // href={item.href}
+                    onClick={() => navigate(item.href)}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'hover:bg-greene hover:bg-opacity-20 text-white hover:text-white' : 
                       ' hover:bg-greene hover:bg-opacity-20 hover:text-white text-white',
-                      ' rounded-md px-3 py-2 text-sm font-bold text-nowrap',
+                      ' rounded-md px-3 py-2 text-sm font-bold text-nowrap cursor-pointer',
                     )}
                   >
                     {item.name}
@@ -82,15 +91,7 @@ const CustomerNavbar=()=> {
                 
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full bg-greene p-1 text-white border-greene hover:text-white hover:border-greene focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-greene"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="h-6 w-6 " />
-            </button>
-
+       
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-2">
               <div className='flex items-center space-x-2'>
@@ -103,7 +104,7 @@ const CustomerNavbar=()=> {
                     className="h-10 w-10 rounded-full"
                   />  
                 </MenuButton>
-                <p className='text-white hidden sm:block'>{username}</p>
+                <p className='text-white hidden sm:block'>{sessionStorage.getItem("username")}</p>
               </div>
               <MenuItems
                 transition
@@ -111,17 +112,17 @@ const CustomerNavbar=()=> {
               >
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                    Your Profile
+                    Seu Perfil
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Settings
+                  Configurações
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Sign out
+                    Sair
                   </a>
                 </MenuItem>
               </MenuItems>

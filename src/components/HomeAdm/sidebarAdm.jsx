@@ -5,6 +5,7 @@ import "tailwindcss/tailwind.css";
 import setaCima from "../../assets/HomeAdm/setaCima.png";
 import setaBaixo from "../../assets/HomeAdm/setaBaixo.png";
 import perfil from "../../assets/funcionario/perfil.png"
+import Loading from "../Loading/Loading";
 
 const SidebarAdm = () => {
   const [departments, setDepartments] = useState([]);
@@ -46,7 +47,12 @@ const SidebarAdm = () => {
   return (
     <section className="sidebar bg-[#F9F6EE] flex flex-col p-4 shadow-md fixed bottom-0 left-0 z-10 w-full md:w-1/3 lg:w-1/4 h-auto md:h-screen overflow-y-scroll">
       <div className="flex flex-col space-y-4 mt-8 md:mt-36">
-        {departments.length > 0 && departments.map((dept) => (
+        {
+        departments.length == 0
+        ?
+        <Loading />
+        :
+        departments.length > 0 && departments.map((dept) => (
           <div key={dept.id} className="department-section">
             <div className="flex justify-between items-center mb-4 mx-8">
               <div className="departamentos">

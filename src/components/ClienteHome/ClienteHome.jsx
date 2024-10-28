@@ -1,7 +1,17 @@
+import { useNavigate } from "react-router-dom"
 import CustomerNavbar from "../AllNavbars/CustomerNavbar/CustomerNavbar"
 import CentralFooter from "../Cliente/CentralFooter"
+import { useState } from "react";
+import Loading from "../Loading/Loading";
 
 const ClienteHome = () => {
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
+
+    if (isLoading) {
+        return <Loading />
+    }
+
     return (
         <div>
             <CustomerNavbar />
@@ -15,7 +25,11 @@ const ClienteHome = () => {
             <ol>
                 <li className="font-lexend list-decimal text-slate-700 text-2xl mt-8 ml-36"> Abra seus tickets em apenas alguns passos:
                     <ol>
-                        <li className="font-lexend list-disc text-slate-700 text-lg font-light mt-4">No menu de navegação selecione o botão “Abrir ticket”</li>
+                        <li className="font-lexend list-disc text-slate-700 text-lg font-light mt-4">No menu de navegação selecione o botão 
+                            <a className="ml-0.5 cursor-pointer text-green-500 hover:text-green-400" onClick={() => navigate("/Create-ticket")}>
+                                “Abrir ticket”
+                            </a>
+                        </li>
                         <li className="font-lexend list-disc text-slate-700 text-lg font-light">Você será direcionado à tela de criação de ticket, onde você poderá detalhar sua solicitação de forma rápida e simples</li>
                     </ol>
                 </li>

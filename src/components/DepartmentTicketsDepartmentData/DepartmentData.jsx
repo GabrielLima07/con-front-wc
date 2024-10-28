@@ -7,6 +7,7 @@ import { countEmAtendimento } from '../../utils/countEmAtendimento';
 import { countEmImpedimento } from '../../utils/countEmImpedimento';
 import { countFechado } from '../../utils/countFechado';
 import Membrosdep from '../funcionario/membrosdep';
+import Loading from '../Loading/Loading';
 
 const DepartmentData = () => {
   const [department, setDepartment] = useState(null);
@@ -15,13 +16,21 @@ const DepartmentData = () => {
   const [emAtendimento, setEmAtendimento] = useState(0);
   const [emImpedimento, setEmImpedimento] = useState(0);
   const [fechados, setFechados] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchDepartment = async () => {
-      const employeeId = sessionStorage.getItem("userId");
-      const data = await getDepartmentByEmployeeId(employeeId);
-      setDepartment(data);
-      sessionStorage.setItem("department_id", data.id)
+      try {
+        setIsLoading(true);
+        const employeeId = sessionStorage.getItem("userId");
+        const data = await getDepartmentByEmployeeId(employeeId);
+        setDepartment(data);
+        sessionStorage.setItem("department_id", data.id)
+      } catch (error) {
+        console.log("Error fetching departments");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchDepartment();
@@ -41,7 +50,7 @@ const DepartmentData = () => {
   }, [])
 
   if (!department) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   return (
@@ -49,6 +58,12 @@ const DepartmentData = () => {
       lg:w-fit lg:h-auto lg:border-r lg:border-[#379E53]
       "
     >
+      {
+        isLoading
+        ?
+        <Loading />
+        :
+      <div>
       {/* department name */}
       <section>
         <h3 className="flex justify-center text-md md:text-lg py-1 px-4 text-center"> Departamento {department.name}</h3>
@@ -82,7 +97,8 @@ const DepartmentData = () => {
       </div>
 
       <hr />
-
+      </div>
+        }
     </div>
   )
 }

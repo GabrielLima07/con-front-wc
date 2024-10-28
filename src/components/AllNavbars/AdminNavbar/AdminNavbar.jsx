@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import profilepic from "../../../assets/funcionario/perfil.png";
 import { useNavigate } from 'react-router-dom';
 import getAdminData from '../../../services/admin/getAdminData';
+import Loading from '../../Loading/Loading';
 
 const AdminNavbar = () => {
   const navigation = [
@@ -16,6 +17,7 @@ const AdminNavbar = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
+
   const getEmployeeInfo = async() => {
     const userId = sessionStorage.getItem("userId")
     try {
@@ -35,8 +37,13 @@ const AdminNavbar = () => {
       setLoading(false)
     }
   };
+
+  const getUsername = () => {
+    setUsername(sessionStorage.getItem("username"))
+  }
   
   useEffect(() => {
+    getUsername();
     getEmployeeInfo();
   }, []);
   
@@ -44,14 +51,12 @@ const AdminNavbar = () => {
     sessionStorage.clear()
   }
   
-  
-  
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
    if (!username) {
-     return <div>Loading...</div>;
+     return <Loading />
   }
   
   return (
@@ -105,7 +110,7 @@ const AdminNavbar = () => {
                     className="h-10 w-10 rounded-full"
                   />  
                 </MenuButton>
-                <p className='text-white hidden sm:block'>{username}</p>
+                <p className='text-white hidden sm:block'>{sessionStorage.getItem("username")}</p>
               </div>
               <MenuItems
                 transition

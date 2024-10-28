@@ -10,6 +10,7 @@ import SidebarAdm from "./sidebarAdm"
 import Footer from "./footerAdm"
 import AdminNavbar from "../AllNavbars/AdminNavbar/AdminNavbar";
 
+
 const HomeAdm = () => {
   return (
     <div className="homeAdm-container min-h-screen flex flex-col bg-[#D9D9D9]">

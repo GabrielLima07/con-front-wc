@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import getEmployeeData from '../../../services/employee/getEmployeeData';
 import profilepic from "../../../assets/funcionario/perfil.png";
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
 
 const EmployeeNavbar = () => {
   const navigation = [
@@ -35,6 +36,7 @@ const EmployeeNavbar = () => {
   };
   
   useEffect(() => {
+    getUsername();
     getEmployeeInfo();
   }, []);
   
@@ -42,14 +44,16 @@ const EmployeeNavbar = () => {
     sessionStorage.clear()
   }
   
-  
+  const getUsername = () => {
+    setUsername(sessionStorage.getItem("username"))
+  }
   
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
    if (!username) {
-     return <div>Loading...</div>;
+     <Loading />
   }
   
   return (
@@ -111,7 +115,7 @@ const EmployeeNavbar = () => {
                     className="h-10 w-10 rounded-full"
                   />  
                 </MenuButton>
-                <p className='text-white hidden sm:block'>{username}</p>
+                <p className='text-white hidden sm:block'>{sessionStorage.getItem("username")}</p>
               </div>
               <MenuItems
                 transition

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import way from "../../assets/cliente/way.png";
 import way2 from "../../assets/cliente/way2.png";
@@ -8,17 +8,22 @@ import handshake from "../../assets/cliente/handshake.png";
 import perfil from "../../assets/cliente/perfil.png";
 import ticket from "../../assets/cliente/ticket.png";
 import idea from "../../assets/cliente/idea.png";
+import Loading from '../Loading/Loading';
 
 const imagem1 = way;
 const imagem2 = way2;
 
 const CentralDeAjuda = () => {
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   
   const handleTicketsButtonClick = () => {
     navigate('/Create-Ticket'); 
   };
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="flex justify-center items-center">
