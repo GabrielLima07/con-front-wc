@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/home';
 import CadastroColaborador from './components/CadastroColaborador/cadastroColaborador';
+import CadastroCliente from './components/CadastroCliente/CadastroCliente'
 import App from './App';
 import FuncionarioHomePage from './pages/funcionarioHomePage';
 import LoginPage from './pages/LoginPage';
@@ -79,6 +80,15 @@ function Main() {
           element={
             <ProtectedRoute allowedTypes={['EMPLOYEE']}>
               <DepartmentTickets />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/cadastroCliente"
+          element={
+            <ProtectedRoute allowedTypes={['EMPLOYEE']}>
+              <CadastroCliente />
             </ProtectedRoute>
           }
         />
