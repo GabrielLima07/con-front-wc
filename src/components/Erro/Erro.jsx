@@ -1,6 +1,8 @@
 import React from "react";
 import erroImg from "../../assets/Erro/404.png"
+import { useNavigate } from "react-router-dom";
 const Erro = () =>{
+  const navigate = useNavigate()
  return (
       <section  className="error">
         
@@ -8,9 +10,13 @@ const Erro = () =>{
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
           <div className="relative flex h-16 items-center ">
 
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex flex-shrink-0 items-center ">
-               <h1 className='text-white pb-1 text-2xl font-bold cursor-pointer' onClick={() => navigate("/clienteHome")}>WayClient</h1>
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-shrink-0 items-center">
+                <h1
+                  className="text-white text-2xl sm:text-3xl font-bold cursor-pointer"
+                  onClick={() => navigate(-1)}
+                >
+                  WayClient</h1>
               </div>
 
             </div>
