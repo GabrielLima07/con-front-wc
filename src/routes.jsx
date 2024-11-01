@@ -17,6 +17,7 @@ import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
 import Perfil from './pages/Perfil';
+import Erro from './pages/ErroPage'
 
 
 
@@ -34,7 +35,7 @@ function Main() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/modalCliente" element={<ModalCliente/>}/> 
-      
+        <Route path="*" element={<Erro/>}/> 
 
         {/* Apenas admin */}
         <Route
