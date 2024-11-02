@@ -17,4 +17,5 @@ const getCustomerData = async(id) => {
   }
 }
 
+
 export default getCustomerData;

@@ -5,6 +5,7 @@ import getEmployeeData from '../../../services/employee/getEmployeeData';
 import profilepic from "../../../assets/funcionario/perfil.png";
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
+import getCustomerData from '../../../services/customer/getCustomerData';
 
 const EmployeeNavbar = () => {
   const navigation = [
@@ -12,9 +13,12 @@ const EmployeeNavbar = () => {
     { name: 'Mensagens', href: '', current: false },
     { name: 'Histórico', href: '', current: false },
   ]
+  const [searchQuery, setSearchQuery] = useState(""); // Estado para armazenar a busca
+  const [customerProfile, setCustomerProfile] = useState(null)
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
+  
   const getEmployeeInfo = async() => {
     const userId = sessionStorage.getItem("userId")
     try {
@@ -34,7 +38,18 @@ const EmployeeNavbar = () => {
       setLoading(false)
     }
   };
-  
+  const searchCustomer = async (query) => {
+    try {
+      const results = await getCustomerData(query); 
+      if (results) {
+        setCustomerProfile(results); 
+      } else {
+        setCustomerProfile(null); 
+      }
+    } catch (error) {
+      console.error("Erro ao buscar cliente:", error);
+    }
+  };
   useEffect(() => {
     getUsername();
     getEmployeeInfo();
@@ -90,7 +105,18 @@ const EmployeeNavbar = () => {
               </div>
             </div>   
 
-              <input type='search' className='hidden md:block md:w-full text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder=" pesquisar" />     
+              <input type="search" value={searchQuery} onChange={(e) => {
+                setSearchQuery(e.target.value);
+                searchCustomer(e.target.value);
+              }} placeholder="Pesquisar cliente" className="hidden md:block md:w-full text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene"/> 
+                {customerProfile && (
+                    <div className="absolute right-0 top-16 w-full bg-white p-4 rounded-lg shadow-md z-10">
+                    <h2 className="text-lg font-bold">{customerProfile.name}</h2>
+                    <p>{customerProfile.email}</p>
+                    <p>{customerProfile.phone}</p>
+                    <button onClick={() => setCustomerProfile(null)} className="mt-2 text-red-500">Fechar</button>
+                    </div>
+)}
 
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
