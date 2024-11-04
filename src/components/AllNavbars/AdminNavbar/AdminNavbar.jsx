@@ -11,8 +11,8 @@ import Loading from '../../Loading/Loading';
 const AdminNavbar = () => {
   const navigation = [
     { name: 'Tickets', href: '/admin-tickets', current: true },
-    { name: 'Mensagens', href: '', current: false },
     { name: 'Histórico', href: '', current: false },
+    { name: 'Cadastros', href: '', current: false },
   ]
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true)
@@ -118,12 +118,7 @@ const AdminNavbar = () => {
               >
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                    Seu Perfil
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                   Configurações
+                    Perfil
                   </a>
                 </MenuItem>
                 <MenuItem>

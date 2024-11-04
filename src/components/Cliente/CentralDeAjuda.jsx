@@ -18,7 +18,7 @@ const CentralDeAjuda = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const handleTicketsButtonClick = () => {
-    navigate('/Create-Ticket'); 
+    navigate('/perfil'); 
   };
 
   const handleFAQButtonClick = () => {
