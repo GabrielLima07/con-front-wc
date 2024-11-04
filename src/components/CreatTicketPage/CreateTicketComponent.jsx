@@ -58,13 +58,22 @@ function CreateTicket() {
       customer: {id : id} ,
       product: null,
       service: null,
-      
+    };
+
+    const ticketDataWithoutDepartment = {
+      title,
+      description,
+      status: 'Pendente',
+      date: getCurrentDate(),
+      customer: {id : id} ,
+      product: null,
+      service: null,
     };
 
     try {
       setIsLoading(true)
       // Chama a função para criar o ticket
-      const responseStatus = await createTicket(ticketData);
+      const responseStatus = await createTicket(departmentId == '' ? ticketData : ticketDataWithoutDepartment);
 
       if (responseStatus === '201') {
         alert('Ticket enviado com sucesso!');
@@ -105,6 +114,7 @@ function CreateTicket() {
                     className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">Selecione um departamento</option>
+                    <option value="Sem departamento">Não tenho certeza</option>
                     {departments.map(department => (
                       <option key={department.id} value={department.id}>{department.name}</option>
                     ))}

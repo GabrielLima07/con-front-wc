@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CustomerNavbar=()=> {
   const navigation = [
-    { name: 'Meus Tickets', href: '/Create-Ticket', current: true },
+    { name: 'Abir Ticket', href: '/Create-Ticket', current: true },
     { name: 'Central de Ajuda', href: '/central-de-ajuda', current: false },
     { name: 'FAQ', href: '/Perguntas-Frequentes', current: false },
     
@@ -112,11 +112,6 @@ const CustomerNavbar=()=> {
               >
                 <MenuItem>
                 <a onClick={() => navigate("/perfil")} className="block px-4 py-2 text-sm text-white hover:text-greenh ">Perfil</a>
-                </MenuItem>
-                <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                  Configurações
-                  </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
