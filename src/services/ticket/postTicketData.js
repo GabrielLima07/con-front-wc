@@ -8,8 +8,7 @@ const createTicket = async (data) => {
     console.log(data);
     const response = await axios.post(`${API_BASE_URL}/ticket`, data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`, // Enviando o token de autenticação
+        Authorization: `Bearer ${token}`, // Enviando o token de autenticação
       }
     });
     return JSON.stringify(response.status);
