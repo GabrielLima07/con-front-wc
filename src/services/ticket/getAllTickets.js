@@ -8,9 +8,13 @@ const getAllTickets = async () => {
     const response = await axios.get(`${API_BASE_URL}/ticket`, {
       headers: {
         Authorization: `Bearer ${token}`
+      
       }
+  
     });
-    return response.data;
+
+    return response.data ;
+  
   } catch (error) {
     console.error('Error fetching tickets', error);
     return null;
