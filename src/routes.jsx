@@ -16,13 +16,11 @@ import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
-<<<<<<< HEAD
 import CustomerPerfil from './components/Cliente/CustomerPerfil';
-=======
 import Perfil from './pages/Perfil';
 import Erro from './pages/ErroPage'
 
->>>>>>> f1e675d3ed191e5b5e653bb2a5ba3f48bbfa3ea7
+
 
 
 function Main() {
