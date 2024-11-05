@@ -9,7 +9,7 @@ const getCustomerData = async(id) => {
     const response = await axios.get(`${API_BASE_URL}/customer/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
-      }
+      },
     });
     return response.data.name;
   } catch (error) {

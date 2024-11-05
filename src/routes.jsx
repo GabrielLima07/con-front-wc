@@ -15,6 +15,7 @@ import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
+import CustomerPerfil from './components/Cliente/CustomerPerfil';
 
 
 function Main() {
@@ -71,6 +72,10 @@ function Main() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/profile/:customer" element={<ProtectedRoute allowedTypes={['EMPLOYEE']}>
+              <CustomerPerfil/>
+            </ProtectedRoute>}/>
 
         <Route 
           path='department-tickets' 
