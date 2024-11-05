@@ -180,48 +180,48 @@ export default function Modal({
               )}
 
               {/* Lista de funcionários */}
-{showEmployeeList && (
-  <div className="w-1/3 pl-6 border-l">
-    <h4 className="text-lg font-semibold mb-2">Selecione o funcionário:</h4>
-    <div className="space-y-2">
-      {employees.map((employee) => (
-        <div key={employee.id} className="flex items-center mb-2">
-          <input
-            type="radio"
-            id={employee.id}
-            name="employee"
-            value={employee.name}
-            checked={selectedEmployee ? selectedEmployee.id === employee.id : ticket.employeeName === employee.name}
-            onChange={() => setSelectedEmployee(employee)}
-            className="mr-2"
-          />
-          <label htmlFor={employee.id} className="text-sm">
-            {employee.name}
-          </label>
-        </div>
-      ))}
-    </div>
-
-    {/* Botões de confirmação */}
-    <div className="flex mt-6 space-x-4">
-      <button
-        className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => setShowEmployeeList(false)}
-      >
-        Cancelar
-      </button>
-      <button
-        className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
-        type="button"
-        onClick={handleConfirmEmployee}
-        disabled={!selectedEmployee}
-      >
-        Confirmar
-      </button>
-    </div>
-  </div>
-)}
+              {showEmployeeList && (
+                <div className="w-1/3 pl-6 border-l">
+                  <h4 className="text-lg font-semibold mb-2">Selecione o funcionário:</h4>
+                  <div className="space-y-2">
+                    {employees.map((employee) => (
+                      <div key={employee.id} className="flex items-center mb-2">
+                        <input
+                          type="radio"
+                          id={employee.id}
+                          name="employee"
+                          value={employee.name}
+                          checked={selectedEmployee ? selectedEmployee.id === employee.id : ticket.employeeName === employee.name}
+                          onChange={() => setSelectedEmployee(employee)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={employee.id} className="text-sm">
+                          {employee.name}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Botões de confirmação */}
+                  <div className="flex mt-6 space-x-4">
+                    <button
+                      className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowEmployeeList(false)}
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={handleConfirmEmployee}
+                      disabled={!selectedEmployee}
+                    >
+                      Confirmar
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
 
