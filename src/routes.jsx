@@ -16,8 +16,10 @@ import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
+import CustomerPerfil from './components/Cliente/CustomerPerfil';
 import Perfil from './pages/Perfil';
 import Erro from './pages/ErroPage'
+import DashboardComponent from './components/Dashboard/DashboardComponent';
 
 
 
@@ -36,6 +38,7 @@ function Main() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/modalCliente" element={<ModalCliente/>}/> 
         <Route path="*" element={<Erro/>}/> 
+        <Route path="/dashboard" element={<DashboardComponent />} />
 
         {/* Apenas admin */}
         <Route
@@ -75,6 +78,10 @@ function Main() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/profile/:customer" element={<ProtectedRoute allowedTypes={['EMPLOYEE']}>
+              <CustomerPerfil/>
+            </ProtectedRoute>}/>
 
         <Route 
           path='department-tickets' 
