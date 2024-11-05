@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import cadastro from "../../assets/HomeAdm/cadastro.png"
 import ticket from "../../assets/HomeAdm/tickets.png"
@@ -12,6 +12,8 @@ import AdminNavbar from "../AllNavbars/AdminNavbar/AdminNavbar";
 
 
 const HomeAdm = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="homeAdm-container min-h-screen flex flex-col bg-[#D9D9D9]">
       <section className="navbar fixed top-0 left-0 w-full z-20">
@@ -42,7 +44,7 @@ const HomeAdm = () => {
               </li>
               </Link>
 
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl *: hover:bg-slate-300">
+              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl *: hover:bg-slate-300 cursor-pointer">
                 Atualizar dados
                 <img
                   className="object-cover object-center h-4 md:h-5 ml-2"
@@ -50,7 +52,7 @@ const HomeAdm = () => {
                   alt="setas indicando atualização"
                 />
               </li>
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300">
+              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
                 Departamentos
                 <img
                   className="object-cover object-center h-4 md:h-5 ml-2"
@@ -62,7 +64,7 @@ const HomeAdm = () => {
             <ul className="space-y-8 text-center text-[#379E53]">
               
             <Link to="/cadastroColaborador" className="link text-inherit hover:text-#379E53">
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-between text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300">
+              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-between text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
                 Cadastrar Funcionário
                 <img
                   className="object-cover object-center h-4 md:h-3 ml-2"
@@ -72,7 +74,10 @@ const HomeAdm = () => {
               </li>
               </Link>
               
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300">
+              <li 
+                onClick={() => navigate("/admin-tickets")}
+                className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer"
+              >
                 Tickets
                 <img
                   className="object-cover object-center h-4 md:h-5 ml-2"
@@ -81,7 +86,7 @@ const HomeAdm = () => {
                 />
               </li>
               
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300">
+              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
                 Histórico
                 <img
                   className="object-cover object-center h-4 md:h-5 ml-2"
