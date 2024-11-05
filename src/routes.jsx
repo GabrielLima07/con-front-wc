@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/home';
 import CadastroColaborador from './components/CadastroColaborador/cadastroColaborador';
+import CadastroCliente from './components/CadastroCliente/CadastroCliente'
 import App from './App';
 import FuncionarioHomePage from './pages/funcionarioHomePage';
 import LoginPage from './pages/LoginPage';
@@ -15,7 +16,13 @@ import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
+<<<<<<< HEAD
 import CustomerPerfil from './components/Cliente/CustomerPerfil';
+=======
+import Perfil from './pages/Perfil';
+import Erro from './pages/ErroPage'
+
+>>>>>>> f1e675d3ed191e5b5e653bb2a5ba3f48bbfa3ea7
 
 
 function Main() {
@@ -32,7 +39,7 @@ function Main() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/modalCliente" element={<ModalCliente/>}/> 
-      
+        <Route path="*" element={<Erro/>}/> 
 
         {/* Apenas admin */}
         <Route
@@ -86,6 +93,15 @@ function Main() {
           }
         />
 
+        <Route
+          path="/cadastroCliente"
+          element={
+            <ProtectedRoute allowedTypes={['EMPLOYEE']}>
+              <CadastroCliente />
+            </ProtectedRoute>
+          }
+        />
+
         {/* Apenas clientes */}
         <Route
           path="/central-de-ajuda"
@@ -123,6 +139,14 @@ function Main() {
             <ClienteHome/>
           </ProtectedRoute>
         }
+        />
+        <Route
+          path="/perfil"
+          element={
+            <ProtectedRoute allowedTypes={['CUSTOMER']}>
+              <Perfil />
+            </ProtectedRoute>
+          }
         />
 
       </Routes>

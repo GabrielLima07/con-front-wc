@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const MainFuncionario = () =>{
     return(
         <div className="flex flex-col items-center bg-white  ">
@@ -6,12 +8,14 @@ const MainFuncionario = () =>{
            </div>
            <div className="flex flex-col items-center justify-center space-x-0 sm:flex-row sm:space-x-20 space-y-4 sm:space-y-0">
                 <div className="space-y-8">
-                    <button className="flex whitespace-nowrap w-[12rem] bg-green-600 sm:w-[14rem] justify-center items-center rounded-lg shadow-xl px-4 py-4 text-white hover:border-greenh focus:outline-none focus:ring-greene focus:ring-2 hover:ring-offset-greene">
-                        <span className="text-base sm:text-xl">Cadastrar Cliente</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 m-1">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                    </button>
+                    <Link to="/CadastroCliente" className="link text-inherit hover:text-#379E53">
+                        <button className="flex whitespace-nowrap w-[12rem] bg-green-600 sm:w-[14rem] justify-center items-center rounded-lg shadow-xl px-4 py-4 text-white hover:border-greenh focus:outline-none focus:ring-greene focus:ring-2 hover:ring-offset-greene">
+                            <span className="text-base sm:text-xl">Cadastrar Cliente</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 m-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </button>
+                    </Link>
                     <button className="flex w-[12rem] sm:w-[14rem] bg-green-600 justify-center items-center rounded-lg shadow-xl  px-5 py-4 text-white hover:border-greenh focus:outline-none focus:ring-greene focus:ring-2 hover:ring-offset-greene ">
                         <span className="text-base sm:text-xl">Atualizar Dados</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 m-1">
