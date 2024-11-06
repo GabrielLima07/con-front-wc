@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import profilepic from "../../assets/funcionario/perfil.png";
 import getEmployeeData from '../../services/employee/getEmployeeData';
 import getDepartmentByEmployeeId from '../../services/department/getDepartmentByEmployeeId';
@@ -33,10 +34,18 @@ const PerfilFuncionario = () => {
           department: deptData.name 
         });
 
-        // Exemplo de atividades para exibir
+        // Exemplo de atividades para exibir com UUID
         setActivities([
-          { id: "027", cliente: "Marcelly Freitas", data: "18 de Abril de 2024", descricao: "Valor Pago" },
-          { id: "152", cliente: "João Paulo", data: "15 de Abril de 2024", descricao: "Desconto" },
+          { id: uuidv4(), cliente: "Marcelly Freitas", data: "18 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "João Paulo", data: "15 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Fernanda Silva", data: "10 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Carlos Henrique", data: "9 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Ana Oliveira", data: "8 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Pedro Santos", data: "5 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Larissa Gomes", data: "3 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Rafael Costa", data: "1 de Abril de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Luciana Melo", data: "30 de Março de 2024", descricao: "Lorem Ipsum" },
+          { id: uuidv4(), cliente: "Thiago Rocha", data: "28 de Março de 2024", descricao: "Lorem Ipsum" },
         ]);
       } catch (error) {
         console.log("Erro ao buscar dados do funcionário ou departamento:", error);
