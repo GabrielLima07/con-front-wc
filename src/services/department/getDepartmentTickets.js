@@ -12,7 +12,6 @@ const getDepartmentTickets = async() => {
         Authorization: `Bearer ${token}`
       }
     });
-    console.log("passei por aq")
     return response.data;
   } catch (error) {
     console.log(error);

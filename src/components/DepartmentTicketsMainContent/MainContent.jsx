@@ -5,7 +5,7 @@ import { DndContext } from '@dnd-kit/core';
 import Droppable from "../Droppable/Droppable"
 import putTicketStatus from './../../services/ticket/putTicketStatus';
 
-const MainContent = (props) => {
+const MainContent = () => {
   const [tickets, setTickets] = useState([]);
 
   const handleDragEnd = async (event) => {

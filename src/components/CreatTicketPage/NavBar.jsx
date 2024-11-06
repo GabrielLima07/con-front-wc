@@ -78,7 +78,7 @@ const NavBar=()=> {
               </div>
             </div>
            
-              <input type='search' className='hidden sm:block md:w-full h-10 m-5 text-greene px-2 py-1 rounded-3xl outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder=" search" />
+              <input type='search' className='hidden sm:block md:w-full h-10 m-5 text-greene px-2 py-1 rounded-3xl outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder="pesquisar" />
                 
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">

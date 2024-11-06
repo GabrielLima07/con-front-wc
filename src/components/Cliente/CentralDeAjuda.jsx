@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import way from "../../assets/cliente/way.png";
 import way2 from "../../assets/cliente/way2.png";
@@ -8,17 +8,30 @@ import handshake from "../../assets/cliente/handshake.png";
 import perfil from "../../assets/cliente/perfil.png";
 import ticket from "../../assets/cliente/ticket.png";
 import idea from "../../assets/cliente/idea.png";
+import Loading from '../Loading/Loading';
 
 const imagem1 = way;
 const imagem2 = way2;
 
 const CentralDeAjuda = () => {
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   
   const handleTicketsButtonClick = () => {
-    navigate('/Create-Ticket'); 
+    navigate('/perfil'); 
   };
+
+  const handleFAQButtonClick = () => {
+    navigate('/Perguntas-Frequentes'); 
+  };
+
+  const handlePerfilButtonClick = () => {
+    navigate('/perfil'); 
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex justify-center items-center">
@@ -37,6 +50,7 @@ const CentralDeAjuda = () => {
         <div className="flex flex-row m-4 mt-20 space-x-6">
           <div className="flex flex-col w-1/3 space-y-4">
             <button
+              onClick={handleFAQButtonClick} 
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
             >
               <img src={ask} alt="Perguntas Frequentes" className="h-12 w-12" />
@@ -58,6 +72,7 @@ const CentralDeAjuda = () => {
               <span className="text-sm text-black">Meus Tickets</span>
             </button>
             <button
+              onClick={handlePerfilButtonClick} 
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
             >
               <img src={perfil} alt="Sua Conta" className="h-12 w-12" />
