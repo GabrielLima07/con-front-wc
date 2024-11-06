@@ -13,7 +13,6 @@ import { CustomerPerfilContext } from '../../context/CustomerPerfilContext';
 const EmployeeNavbar = () => {
   const navigation = [
     { name: 'Tickets', href: '/department-tickets', current: true },
-    { name: 'Mensagens', href: '', current: false },
     { name: 'Histórico', href: '', current: false },
   ]
 
@@ -160,14 +159,6 @@ const EmployeeNavbar = () => {
               </div>    
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
-              <button
-                type="button"
-                className="relative rounded-full bg-greene p-1 text-white border-greene hover:text-white hover:border-greene focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-greene"
-              >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="h-6 w-6 " />
-              </button>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-2">
@@ -188,18 +179,13 @@ const EmployeeNavbar = () => {
                   className="absolute  right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-greene text-white  py-1 shadow-lg ring-1 ring-greenh ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                 >
                   <MenuItem>
-                    <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                      Your Profile
-                    </a>
-                  </MenuItem>
-                  <MenuItem>
-                    <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                      Settings
+                    <a onClick={() => navigate('/employee-profile')} className="block px-4 py-2 text-sm text-white hover:text-greenh ">
+                      Perfil
                     </a>
                   </MenuItem>
                   <MenuItem>
                     <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                      Sign out
+                      Sair
                     </a>
                   </MenuItem>
                 </MenuItems>
