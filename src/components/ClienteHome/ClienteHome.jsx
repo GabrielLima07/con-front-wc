@@ -45,7 +45,7 @@ const ClienteHome = () => {
                     <ol>
                         <li className="font-lexend list-disc text-slate-700 text-lg font-light mt-4">Abaixo, você encontrará um vídeo explicativo detalhando como usar todos os recursos da nossa plataforma</li>
                         <video width="750" height="500" controls className="mt-8" >
-                            <source src="..Videos/video1.mp4" type="video/mp4" />
+                            <source src="/assets/WayClient-video.mp4" type="video/mp4" />
                         </video>
                     </ol>
                 </li>
