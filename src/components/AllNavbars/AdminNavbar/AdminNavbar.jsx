@@ -1,96 +1,103 @@
+// IMPORTANTE!!!!!!
+// Essa deve ser a única navbar utilizada p/ todas as telas de Admin
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
+import profilepic from "../../../assets/funcionario/perfil.png";
+import { useNavigate } from 'react-router-dom';
+import getAdminData from '../../../services/admin/getAdminData';
+import Loading from '../../Loading/Loading';
 
-import getCustomerData from '../../services/customer/getCustomerData';
-import profilepic from "../../assets/funcionario/perfil.png";
-
-const NavBar=()=> {
+const AdminNavbar = () => {
   const navigation = [
-    { name: 'Meus Tickets', href: '#', current: true },
-    { name: 'Central de Ajuda', href: '#', current: false },
-    { name: 'FAQ', href: '/Perguntas-Frequentes', current: false },
-    
+    { name: 'Tickets', href: '/admin-tickets', current: true },
+    { name: 'Histórico', href: '', current: false },
+    { name: 'Cadastros', href: '', current: false },
   ]
   const [username, setUsername] = useState("");
-  const getCustomerInfo = async()=>{
-    try{
-      let name = await getCustomerData(sessionStorage.getItem("userId"))
-      if(name){
-        sessionStorage.setItem("username",name)
-        setUsername(name);
-      }
-    }catch(error){
-      console.log(error)
-    }
-  }
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
+  const getEmployeeInfo = async() => {
+    const userId = sessionStorage.getItem("userId")
+    try {
+      if (!userId) {
+        console.log("Id do usuário não encontrado na sessionStorage.");
+        return;
+      }
+
+        let name = await getAdminData(sessionStorage.getItem("userId"))
+        if (name) {
+            sessionStorage.setItem("username", name)
+            setUsername(name);
+        }
+    } catch (error) {
+        console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  const getUsername = () => {
+    setUsername(sessionStorage.getItem("username"))
+  }
+  
   useEffect(() => {
-    getCustomerInfo();
+    getUsername();
+    getEmployeeInfo();
   }, []);
   
   const handleLogoutClick = () => {
-    
     sessionStorage.clear()
   }
-  
-  
   
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
-  if (!username) {
-    return <div>Loading...</div>;
+   if (!username) {
+     return <Loading />
   }
   
   return (
     <Disclosure as="nav" className="bg-greenh">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"> 
+          <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:bg-greene focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white hover:border-greene">
               <span className="absolute -inset-0.5" />
               <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
               <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             <div className="flex flex-shrink-0 items-center ">
-             <h1 className='text-white pb-1 text-lg'>WayClient</h1>
+             <h1 onClick={() => navigate("/adminHome")} className='text-white pb-1 text-2xl'>WayClient</h1>
             </div>
-            <div className="hidden sm:ml-6 sm:block ">
-              <div className="flex space-x-4 text-white mt-5">
+            <div className="hidden md:ml-6 md:block ">
+              <div className="flex space-x-4 text-white mt-1">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
+                    onClick={() => navigate(`${item.href}`)}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'hover:bg-greene hover:bg-opacity-20 text-white hover:text-white' : 
                       ' hover:bg-greene hover:bg-opacity-20 hover:text-white text-white',
-                      ' rounded-md px-3 py-2 text-sm font-bold text-nowrap',
+                      ' rounded-md px-3 py-2 text-sm font-bold cursor-pointer',
                     )}
                   >
                     {item.name}
                   </a>
                 ))}
               </div>
-            </div>
-           
-              <input type='search' className='hidden sm:block md:w-full h-10 m-5 text-greene px-2 py-1 rounded-3xl outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder=" search" />
-                
+            </div>   
+
+              <input type='search' className='hidden md:block md:w-full text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder="pesquisar" />     
+
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full bg-greene p-1 text-white border-greene hover:text-white hover:border-greene focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-greene"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="h-6 w-6 " />
-            </button>
-
+           
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-2">
               <div className='flex items-center space-x-2'>
@@ -103,7 +110,7 @@ const NavBar=()=> {
                     className="h-10 w-10 rounded-full"
                   />  
                 </MenuButton>
-                <p className='text-white hidden sm:block'>{username}</p>
+                <p className='text-white hidden sm:block'>{sessionStorage.getItem("username")}</p>
               </div>
               <MenuItems
                 transition
@@ -111,17 +118,12 @@ const NavBar=()=> {
               >
                 <MenuItem>
                   <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                    Your Profile
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Settings
+                    Perfil
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
-                    Sign out
+                    Sair
                   </a>
                 </MenuItem>
               </MenuItems>
@@ -130,7 +132,7 @@ const NavBar=()=> {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="md:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
             <DisclosureButton
@@ -146,6 +148,7 @@ const NavBar=()=> {
               {item.name}
             </DisclosureButton>
           ))}
+          <input type='search' className='w-11/12 text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder=" search" />     
         </div>
       </DisclosurePanel>
     </Disclosure>
@@ -153,4 +156,4 @@ const NavBar=()=> {
 }
 
 
-export default NavBar;
+export default AdminNavbar;

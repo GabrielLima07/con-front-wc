@@ -1,13 +1,13 @@
 
 import MainFuncionario from "../components/FuncionarioHome/MainFuncionario";
 import FooterFuncionario from "../components/FuncionarioHome/FooterFuncionario";
-import MenuFuncionario from "../components/FuncionarioHome/MenuFuncionario";
+import EmployeeNavbar from "../components/AllNavbars/EmployeeNavbar/EmployeeNavbar";
 import SideBarFuncionario from "../components/FuncionarioHome/SideBarFuncionario";
 
 const FuncionarioHomePage = ()=>{
     return(
         <div>  
-            <div><MenuFuncionario/></div>
+            <div><EmployeeNavbar/></div>
             <div className="flex bg-white">
                 <div className="w-2/5" ><SideBarFuncionario className=""/></div>
                 <div className="space-y-64">

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
-import NavBar from './NavBar';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar';
+import Loading from '../Loading/Loading';
 
 function PerguntasFrequentes() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -12,34 +14,39 @@ function PerguntasFrequentes() {
 
   const faqData = [
     {
-      question: "Como o sistema de gestão de atendimento pode beneficiar minha empresa?",
-      answer: "O sistema pode aumentar a eficiência, melhorar a comunicação e fornecer relatórios detalhados para uma gestão mais eficaz."
+      question: "O que é um ticket?",
+      answer: "Um ticket é uma solicitação de atendimento que você envia para a empresa. Ele é registrado no sistema para que a equipe responsável possa tratá-lo de forma rápida e eficiente."
     },
     {
-      question: "Posso personalizar o sistema de acordo com as necessidades da minha empresa?",
-      answer: "Sim, o sistema é altamente personalizável para atender às necessidades específicas de cada empresa."
+      question: "Como posso criar um novo ticket?",
+      answer: "Para criar um novo ticket, clique no botão 'Meus Tickets' na parte superior do sistema. Na página de criação, selecione o departamento, insira o título e a descrição do problema e, em seguida, clique em 'Enviar'."
     },
     {
-      question: "Como posso acompanhar o desempenho da minha equipe?",
-      answer: "Você pode usar o sistema para gerar relatórios de desempenho e acompanhar métricas importantes em tempo real."
+      question: "Como posso acompanhar o status do meu ticket?",
+      answer: "Para acompanhar o status do seu ticket, acesse seu perfil clicando na sua imagem no canto superior direito e selecione 'Perfil'. Lá, você verá a lista de seus tickets e outras informações do seu perfil."
     },
     {
-      question: "O sistema é seguro?",
-      answer: "Sim, implementamos as melhores práticas de segurança para proteger seus dados e garantir a confidencialidade."
+      question: "Como entro em contato se encontrar algum erro?",
+      answer: "Se encontrar algum erro, entre em contato com nosso suporte pelo telefone (81) 99999-9999. Nossa equipe estará pronta para ajudar."
     },
     {
-      question: "Posso integrar o sistema com outras ferramentas que minha empresa já utiliza?",
-      answer: "Sim, nosso sistema suporta integração com várias ferramentas e aplicativos existentes."
+      question: "Qual o horário de atendimento do suporte?",
+      answer: "Nosso suporte atende de segunda a sexta-feira, das 8h às 18h, pelo telefone (81) 99999-9999."
     },
     {
       question: "Outros",
-      answer: "Se você tiver outras perguntas, entre em contato com nosso suporte para obter mais informações."
+      answer: "Se você tiver outras dúvidas, entre em contato com nosso suporte para mais informações."
     }
   ];
+  
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div>
-      <NavBar />
+      <CustomerNavbar />
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gray-100">
         <h1 className="font-bold text-gray-700 text-3xl sm:text-4xl lg:text-5xl mb-10 text-center">
           Perguntas Frequentes
