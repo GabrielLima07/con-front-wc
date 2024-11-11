@@ -51,13 +51,13 @@ const CentralDeAjuda = () => {
           <div className="flex flex-col w-1/3 space-y-4">
             <button
               onClick={handleFAQButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={ask} alt="Perguntas Frequentes" className="h-12 w-12" />
               <span className="text-sm text-black">Perguntas Frequentes</span>
             </button>
             <button
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={handshake} alt="Nosso Propósito" className="h-12 w-12" />
               <span className="text-sm text-black">Nosso Propósito</span>
@@ -66,14 +66,14 @@ const CentralDeAjuda = () => {
           <div className="flex flex-col w-1/3 space-y-4">
             <button
               onClick={handleTicketsButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={ticket} alt="Meus Tickets" className="h-12 w-12" />
               <span className="text-sm text-black">Meus Tickets</span>
             </button>
             <button
               onClick={handlePerfilButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={perfil} alt="Sua Conta" className="h-12 w-12" />
               <span className="text-sm text-black">Sua Conta</span>
@@ -81,13 +81,13 @@ const CentralDeAjuda = () => {
           </div>
           <div className="flex flex-col w-1/3 space-y-4">
             <button
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={idea} alt="Nossos Serviços" className="h-12 w-12" />
               <span className="text-sm text-black">Nossos Serviços</span>
             </button>
             <button
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={communicate} alt="Fale Conosco" className="h-12 w-12" />
               <span className="text-sm text-black">Fale Conosco</span>
