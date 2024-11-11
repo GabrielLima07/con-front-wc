@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfilePage from '../components/Profile/ProfilePage'; // Ajuste o caminho se necessário
+import ProfilePage from '../components/Profile/ProfilePage'; 
 
 const Perfil = () => {
   return <ProfilePage />;

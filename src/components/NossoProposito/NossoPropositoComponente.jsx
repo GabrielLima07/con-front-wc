@@ -1,14 +1,14 @@
 import React from 'react';
-import Footer from './Footer';  // Certifique-se de importar o Footer corretamente
-import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar'; // Certifique-se de importar o Navbar corretamente
+import Footer from './Footer';  
+import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar'; 
 
 const NossoProposito = () => {
   return (
     <div>
-      {/* Navbar */}
+     
       <CustomerNavbar />
       
-      {/* Conteúdo principal da página */}
+      
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gray-100">
         <h1 className="font-bold text-gray-700 text-3xl sm:text-4xl lg:text-5xl mb-10 text-center">
           Nosso Propósito
@@ -29,7 +29,7 @@ const NossoProposito = () => {
         </div>
       </div>
       
-      {/* Footer */}
+      
       <Footer />
     </div>
   );

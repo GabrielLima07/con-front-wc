@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar';
 
-// Importe os ícones das redes sociais
+
 import { FaInstagram, FaFacebook } from 'react-icons/fa'; 
 
 const FaleConosco = () => {
@@ -21,20 +21,20 @@ const FaleConosco = () => {
             nossa equipe está pronta para atendê-lo da melhor forma possível.
           </p>
 
-          {/* Informações de Atendimento */}
+         
           <div className="w-full max-w-lg bg-white shadow-xl rounded-lg p-8 mt-8">
             <h2 className="font-semibold text-2xl text-gray-700 mb-4 text-center">Atendimento</h2>
             <p className="text-lg text-gray-800 mb-6 text-center">
               Segunda à Sexta-feira, das 8h às 18h
             </p>
             
-            {/* Redes sociais e contato */}
+           
             <div className="flex flex-col items-center space-y-6 mt-8">
               <p className="text-lg text-gray-800 text-center">
                 Nos encontre também nas nossas redes sociais!
               </p>
 
-              {/* Redes sociais */}
+              
               <div className="flex space-x-6">
                 <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                   <FaInstagram size={40} className="text-pink-500 hover:text-pink-700" />
