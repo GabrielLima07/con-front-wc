@@ -11,8 +11,8 @@ import Loading from '../../Loading/Loading';
 const AdminNavbar = () => {
   const navigation = [
     { name: 'Tickets', href: '/admin-tickets', current: true },
-    { name: 'Histórico', href: '', current: false },
-    { name: 'Cadastros', href: '', current: false },
+    { name: 'Dashboard', href: '/dashboard', current: false },
+    { name: 'Cadastrar', href: '/cadastroColaborador', current: false },
   ]
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true)
@@ -62,17 +62,18 @@ const AdminNavbar = () => {
   return (
     <Disclosure as="nav" className="bg-greenh">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="relative flex h-16 items-center ">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:bg-greene focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white hover:border-greene">
               <span className="absolute -inset-0.5" />
               <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
               <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
             </DisclosureButton>
+            
           </div>
-          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-            <div className="flex flex-shrink-0 items-center ">
-             <h1 onClick={() => navigate("/adminHome")} className='text-white pb-1 text-2xl'>WayClient</h1>
+          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-between">
+            <div className="flex flex-shrink-0 text-right ">
+             <h1 onClick={() => navigate("/adminHome")} className='text-white pb-1 text-3xl'>WayClient</h1>
             </div>
             <div className="hidden md:ml-6 md:block ">
               <div className="flex space-x-4 text-white mt-1">
@@ -93,7 +94,7 @@ const AdminNavbar = () => {
               </div>
             </div>   
 
-              <input type='search' className='hidden md:block md:w-full text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene  focus:ring-1 focus:ring-greene  sm:text-sm sm:leading-6 shadow-md shadow-greene' placeholder="pesquisar" />     
+    
 
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
@@ -116,11 +117,7 @@ const AdminNavbar = () => {
                 transition
                 className="absolute  right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-greene text-white  py-1 shadow-lg ring-1 ring-greenh ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
-                <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-white hover:text-greenh ">
-                    Perfil
-                  </a>
-                </MenuItem>
+             
                 <MenuItem>
                   <a href="" onClick={handleLogoutClick} className="block px-4 py-2 text-sm text-white  hover:text-greenh">
                     Sair

@@ -15,7 +15,7 @@ const imagem2 = way2;
 const CentralDeAjuda = () => {
   const navigate = useNavigate();
 
-  // Funções de navegação
+  
   const handleTicketsButtonClick = () => {
     navigate('/perfil');
   };
@@ -32,14 +32,14 @@ const CentralDeAjuda = () => {
     navigate('/nosso-proposito');
   };
 
-  // Função de navegação para "Nossos Serviços"
+  
   const handleNossosServicosButtonClick = () => {
     navigate('/nosso-serviço');
   };
 
-  // Função de navegação para "Fale Conosco"
+  
   const handleFaleConoscoButtonClick = () => {
-    navigate('/Fale-conosco');  // Adicionando a navegação para Fale Conosco
+    navigate('/Fale-conosco');  
   };
 
   return (
@@ -60,14 +60,14 @@ const CentralDeAjuda = () => {
           <div className="flex flex-col w-1/3 space-y-4">
             <button
               onClick={handleFAQButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={ask} alt="Perguntas Frequentes" className="h-12 w-12" />
               <span className="text-sm text-black">Perguntas Frequentes</span>
             </button>
             <button
               onClick={handleNossoPropositoButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={handshake} alt="Nosso Propósito" className="h-12 w-12" />
               <span className="text-sm text-black">Nosso Propósito</span>
@@ -76,31 +76,31 @@ const CentralDeAjuda = () => {
           <div className="flex flex-col w-1/3 space-y-4">
             <button
               onClick={handleTicketsButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={ticket} alt="Meus Tickets" className="h-12 w-12" />
               <span className="text-sm text-black">Meus Tickets</span>
             </button>
             <button
               onClick={handlePerfilButtonClick} 
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={perfil} alt="Sua Conta" className="h-12 w-12" />
               <span className="text-sm text-black">Sua Conta</span>
             </button>
           </div>
           <div className="flex flex-col w-1/3 space-y-4">
-            {/* Corrigido o comentário: Comentário dentro do JSX com a sintaxe correta */}
+          
             <button
               onClick={handleNossosServicosButtonClick}  
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={idea} alt="Nossos Serviços" className="h-12 w-12" />
               <span className="text-sm text-black">Nossos Serviços</span>
             </button>
             <button
-              onClick={handleFaleConoscoButtonClick}  // Chama a função de navegação para "Fale Conosco"
-              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-greenh"
+              onClick={handleFaleConoscoButtonClick}  
+              className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={communicate} alt="Fale Conosco" className="h-12 w-12" />
               <span className="text-sm text-black">Fale Conosco</span>

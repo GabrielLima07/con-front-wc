@@ -24,7 +24,8 @@ module.exports = {
         'begepalido':"#F9F6EE",
         'gray100':'#5B5B5B',
         '#1E1E1E': '#1E1E1E',
-        '#BAB8B8': '#BAB8B8'
+        '#BAB8B8': '#BAB8B8',
+        '#d3d3d3': '#d3d3d3'
       },
       backgroundPosition: {
         'custom-pos': 'right 45%, top right 15%',
