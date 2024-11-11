@@ -21,6 +21,10 @@ import Perfil from './pages/Perfil';
 import Erro from './pages/ErroPage'
 import DashboardComponent from './components/Dashboard/DashboardComponent';
 import FuncionarioPerfil from './pages/FuncionarioPerfil';
+import NossoProposito from './pages/NossoProposito';
+import NossosServicos from './pages/NossosServicos';
+import FaleConosco from './pages/FaleConosco';
+import FaleConoscoPage from './pages/FaleConosco';
 
 
 
@@ -157,6 +161,30 @@ function Main() {
             </ProtectedRoute>
           }
         />
+       <Route
+        path="/nosso-proposito"
+        element={
+          <ProtectedRoute allowedTypes={['CUSTOMER']}>
+            <NossoProposito />
+          </ProtectedRoute>
+        }
+      />
+        <Route
+      path="/nosso-serviço"
+      element={
+      <ProtectedRoute allowedTypes={['CUSTOMER']}>
+        <NossosServicos />  
+      </ProtectedRoute>
+    }
+  />
+    <Route
+    path="/Fale-conosco"
+    element={
+      <ProtectedRoute allowedTypes={['CUSTOMER']}>
+        <FaleConoscoPage />  
+      </ProtectedRoute>
+    }
+  />
 
       </Routes>
     </Router>

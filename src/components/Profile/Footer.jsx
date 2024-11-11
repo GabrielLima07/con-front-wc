@@ -28,9 +28,6 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Nossas Redes</h3>
             <div className="flex justify-center space-x-4">
               <a href="#" className="w-8 h-8 bg-contain bg-center bg-no-repeat">
-                <img src={twitterLogo} alt="Twitter Logo" className="w-full h-full" />
-              </a>
-              <a href="#" className="w-8 h-8 bg-contain bg-center bg-no-repeat">
                 <img src={instagramLogo} alt="Instagram Logo" className="w-full h-full" />
               </a>
               <a href="#" className="w-8 h-8 bg-contain bg-center bg-no-repeat">
