@@ -8,8 +8,7 @@ const ModalCliente = ({ initialData }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
-    password: ''
+    email: ''
   });
 
   const customerId = sessionStorage.getItem("userId");
@@ -55,7 +54,7 @@ const ModalCliente = ({ initialData }) => {
           <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-lg mx-auto">
             <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">Editar Perfil</h2>
             <form>
-              {['name', 'phone', 'email', 'password'].map((field) => (
+              {['name', 'phone', 'email'].map((field) => (
                 <div className="mb-4" key={field}>
                   <label className="block text-gray-700">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
                   <input

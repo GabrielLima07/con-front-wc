@@ -5,7 +5,6 @@ import fetchCustomerData from './../../services/customer/fetchCustomerData';
 import Loading from '../Loading/Loading';
 import perfilImg from './../../assets/Login/perfil.png';
 import ModalCliente from '../Modais/ModalClient/ModalCliente';
-import Modal from './Modal';
 
 const ProfilePage = () => {
   const [tickets, setTickets] = useState([]);
@@ -22,7 +21,7 @@ const ProfilePage = () => {
   const handleRowClick = (ticket) => {
     setTicketModal(ticket);
     setShowModal(true)
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +80,8 @@ const ProfilePage = () => {
               <p className="text-gray-700">{customerData.phone || 'Telefone não encontrado'}</p>
             </div>
           </div>
-          <ModalCliente />
+          {/* ModalCliente recebe dados para editar */}
+          <ModalCliente initialData={customerData} />
         </div>
       </div>
 
@@ -115,11 +115,6 @@ const ProfilePage = () => {
         </div>
       </div>
       <Footer />
-      <Modal 
-        isOpen={showModal}
-        onClose={closeModal}
-        ticket={ticketModal}
-      />
     </div>
   );
 };

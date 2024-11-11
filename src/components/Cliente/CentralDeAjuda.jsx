@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import way from "../../assets/cliente/way.png";
 import way2 from "../../assets/cliente/way2.png";
@@ -8,30 +8,39 @@ import handshake from "../../assets/cliente/handshake.png";
 import perfil from "../../assets/cliente/perfil.png";
 import ticket from "../../assets/cliente/ticket.png";
 import idea from "../../assets/cliente/idea.png";
-import Loading from '../Loading/Loading';
 
 const imagem1 = way;
 const imagem2 = way2;
 
 const CentralDeAjuda = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+
   
   const handleTicketsButtonClick = () => {
-    navigate('/perfil'); 
+    navigate('/perfil');
   };
 
   const handleFAQButtonClick = () => {
-    navigate('/Perguntas-Frequentes'); 
+    navigate('/Perguntas-Frequentes');
   };
 
   const handlePerfilButtonClick = () => {
-    navigate('/perfil'); 
+    navigate('/perfil');
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  const handleNossoPropositoButtonClick = () => {
+    navigate('/nosso-proposito');
+  };
+
+  
+  const handleNossosServicosButtonClick = () => {
+    navigate('/nosso-serviço');
+  };
+
+  
+  const handleFaleConoscoButtonClick = () => {
+    navigate('/Fale-conosco');  
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -57,6 +66,7 @@ const CentralDeAjuda = () => {
               <span className="text-sm text-black">Perguntas Frequentes</span>
             </button>
             <button
+              onClick={handleNossoPropositoButtonClick} 
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={handshake} alt="Nosso Propósito" className="h-12 w-12" />
@@ -80,13 +90,16 @@ const CentralDeAjuda = () => {
             </button>
           </div>
           <div className="flex flex-col w-1/3 space-y-4">
+          
             <button
+              onClick={handleNossosServicosButtonClick}  
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={idea} alt="Nossos Serviços" className="h-12 w-12" />
               <span className="text-sm text-black">Nossos Serviços</span>
             </button>
             <button
+              onClick={handleFaleConoscoButtonClick}  
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"
             >
               <img src={communicate} alt="Fale Conosco" className="h-12 w-12" />
