@@ -16,9 +16,12 @@ import HomeAdm from './components/HomeAdm/HomeAdm';
 import ClienteHome from './pages/HomeCliente'
 import AdminTickets from './pages/AdminTickets';
 import ModalCliente from './pages/ModalClientePage';
+import CustomerPerfil from './components/Cliente/CustomerPerfil';
 import Perfil from './pages/Perfil';
 import Erro from './pages/ErroPage'
 import DashboardComponent from './components/Dashboard/DashboardComponent';
+import FuncionarioPerfil from './pages/FuncionarioPerfil';
+
 
 
 function Main() {
@@ -76,6 +79,19 @@ function Main() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/employee-profile"
+          element={
+            <ProtectedRoute allowedTypes={['EMPLOYEE']}>
+              <FuncionarioPerfil />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/profile/:customer" element={<ProtectedRoute allowedTypes={['EMPLOYEE']}>
+          <CustomerPerfil/>
+        </ProtectedRoute>}/>
 
         <Route 
           path='department-tickets' 

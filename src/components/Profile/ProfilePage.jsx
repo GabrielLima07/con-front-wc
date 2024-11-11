@@ -5,13 +5,24 @@ import fetchCustomerData from './../../services/customer/fetchCustomerData';
 import Loading from '../Loading/Loading';
 import perfilImg from './../../assets/Login/perfil.png';
 import ModalCliente from '../Modais/ModalClient/ModalCliente';
+import Modal from './Modal';
 
 const ProfilePage = () => {
   const [tickets, setTickets] = useState([]);
   const [customerData, setCustomerData] = useState({ name: '', email: '', phone: '' });
   const [loading, setLoading] = useState(true);
-
+  const [showModal, setShowModal] = useState(false);
+  const [ticketModal, setTicketModal] = useState({});
   const userImage = perfilImg;
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const handleRowClick = (ticket) => {
+    setTicketModal(ticket);
+    setShowModal(true)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +72,6 @@ const ProfilePage = () => {
     <div className="bg-gray-100 min-h-screen">
       <CustomerNavbar />
       <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg mt-6">
-        <h1 className="text-3xl font-bold text-center mb-6">Perfil do Cliente</h1>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img src={userImage} alt="Perfil" className="w-28 h-28 rounded-full border-2 border-gray-300 shadow-md mr-4" />
@@ -89,7 +99,11 @@ const ProfilePage = () => {
             </thead>
             <tbody>
               {tickets.slice(0, 10).map(ticket => (
-                <tr className="hover:bg-gray-100 transition duration-150" key={ticket.id}>
+                <tr 
+                  className="hover:bg-gray-100 transition duration-150" 
+                  key={ticket.id}
+                  onClick={() => handleRowClick(ticket)}
+                >
                   <td className="px-4 py-3 font-medium text-[#379E53]">{ticket.id}</td>
                   <td className="px-4 py-3">{ticket.date}</td>
                   <td className="px-4 py-3">{ticket.title}</td>
@@ -100,8 +114,12 @@ const ProfilePage = () => {
           </table>
         </div>
       </div>
-
       <Footer />
+      <Modal 
+        isOpen={showModal}
+        onClose={closeModal}
+        ticket={ticketModal}
+      />
     </div>
   );
 };

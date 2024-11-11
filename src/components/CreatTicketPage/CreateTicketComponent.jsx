@@ -6,6 +6,7 @@ import email from '../../assets/images/email.png';
 import CustomerNavbar from '../AllNavbars/CustomerNavbar/CustomerNavbar';
 import createTicket from '../../services/ticket/postTicketData';
 import Loading from '../Loading/Loading';
+import getAllDepartments from '../../services/department/getAllDepartmens';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const token = sessionStorage.getItem("token");
@@ -28,12 +29,7 @@ function CreateTicket() {
   }
   useEffect(() => {
     const fetchDepartments = async () => {
-      const response = await fetch(`${API_BASE_URL}/department`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      const data = await response.json();
+      const data = await getAllDepartments();
       setDepartments(data);
     };
 

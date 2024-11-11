@@ -23,18 +23,16 @@ module.exports = {
         'greenf':'#83B791',
         'begepalido':"#F9F6EE",
         'gray100':'#5B5B5B',
-        '#1E1E1E': '#1E1E1E'
+        '#1E1E1E': '#1E1E1E',
+        '#BAB8B8': '#BAB8B8'
       },
       backgroundPosition: {
         'custom-pos': 'right 45%, top right 15%',
       },
-      
     },
     
    
   
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [],
 };
