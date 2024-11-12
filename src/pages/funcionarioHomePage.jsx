@@ -10,7 +10,7 @@ const FuncionarioHomePage = ()=>{
             <div><EmployeeNavbar/></div>
             <div className="flex bg-white">
                 <div className="w-2/5" ><SideBarFuncionario className=""/></div>
-                <div className="space-y-64">
+                <div className="space-y-16">
                     <div className="p-12"><MainFuncionario/></div>
                     <div  className='flex flex-none'><FooterFuncionario/></div> 
                 </div>

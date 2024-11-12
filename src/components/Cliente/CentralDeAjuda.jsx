@@ -46,18 +46,11 @@ const CentralDeAjuda = () => {
     <div className="flex justify-center items-center">
       <div className="flex shadow-[0_10px_60px_-20px_rgba(0,0,0,0.3)] flex-col justify-center items-center mt-10 w-4/5">
         <h1 className="text-greenh text-5xl mt-10">WayClient</h1>
-        <h2 className="mt-32 text-3xl">Como posso ajudar?</h2>
-        <div className="flex w-3/4">
-          <img src={imagem1} alt="Way" className="hidden sm:block" />
-          <input
-            type="search"
-            className="h-10 mt-12 ml-8 mr-8 sm:block md:w-full text-greene px-2 py-1 rounded-3xl m-2 outline-0 focus:border-greene focus:ring-1 focus:ring-greene sm:text-sm sm:leading-6 shadow-md shadow-greene"
-            placeholder="search"
-          />
-          <img src={imagem2} alt="Way2" className="hidden sm:block" />
+        <div className="flex w-3/4 justify-center items-center">
+          <h2 className=" mt-12 text-3xl">Como posso ajudar?</h2>
         </div>
-        <div className="flex flex-row m-4 mt-20 space-x-6">
-          <div className="flex flex-col w-1/3 space-y-4">
+        <div className="flex flex-row m-4 mt-8 space-x-6">
+          <div className="flex flex-col w-1/3 mb-8 space-y-4">
             <button
               onClick={handleFAQButtonClick} 
               className="border-greenh bg-transparent flex flex-col items-center justify-center h-32 w-full border-2 p-4 hover:border-#d3d3d3 hover:bg-#d3d3d3"

@@ -12,8 +12,7 @@ import { CustomerPerfilContext } from '../../context/CustomerPerfilContext';
 
 const EmployeeNavbar = () => {
   const navigation = [
-    { name: 'Tickets', href: '/department-tickets', current: true },
-    { name: 'Histórico', href: '', current: false },
+    { name: 'Tickets', href: '/department-tickets', current: true }
   ]
 
  
