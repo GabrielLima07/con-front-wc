@@ -10,14 +10,25 @@ const MainSection = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   const toggle = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    const inputEmail = event.target.value;
+    setEmail(inputEmail);
+
+    // Verificação do formato do e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(inputEmail)) {
+      setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
+
+    } else {
+      setEmailError('');
+    }
   };
 
   const handleSenhaChange = (event) => {
@@ -25,6 +36,11 @@ const MainSection = () => {
   };
 
   const handleLoginClick = async () => {
+    if (emailError || !email) {
+      alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
+      return;
+    }
+
     setIsLoading(true);
     let data = {
       "email": email,
@@ -47,13 +63,13 @@ const MainSection = () => {
     } catch (error) {
       console.error("Erro ao fazer login:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleSignupClick = () => {
     navigate("/signup");
-  }
+  };
 
   const redirectAfterLogin = (userType) => {
     if (userType === "ADMIN") {
@@ -63,14 +79,13 @@ const MainSection = () => {
     } else {
       navigate("/clienteHome");
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 pt-8 pb-8">
       {
         isLoading
-          ?
-          <Loading />
+          ? <Loading />
           :
           <section className="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl flex flex-col items-center">
             <h1 className="text-2xl font-bold text-gray-700 mb-6">Bem vindo de volta!</h1>
@@ -83,22 +98,20 @@ const MainSection = () => {
                 type="email"
                 value={email}
                 onChange={handleEmailChange}
-                className="w-full px-3 py-3 text-lg text-gray-600 border border-green-600 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+                className={`w-full px-3 py-3 text-lg text-gray-600 border ${emailError ? 'border-red-600' : 'border-green-600'} rounded-lg focus:outline-none focus:ring ${emailError ? 'focus:ring-red-300' : 'focus:ring-green-300'}`}
               />
+              {emailError && <p className="text-red-600 text-sm mt-2">{emailError}</p>}
             </div>
             <div className="w-full max-w-sm mb-4 relative">
               <label className="block text-gray-700 text-lg mb-2">Senha</label>
               <input
-                type={(open === false ? 'password': 'text')}
+                type={open ? 'text' : 'password'}
                 value={senha}
                 onChange={handleSenhaChange}
-                className="w-full px-3 py-3 text-lg text-gray-600 border border-green-600 rounded-lg focus:outline-none focus:ring focus:ring-green-300 relative"
+                className="w-full px-3 py-3 text-lg text-gray-600 border border-green-600 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
               />
-              <div className='text-2xl absolute bottom-3.5 right-5'>
-                {
-                  (open === false)?<AiOutlineEye onClick={toggle} /> :
-                  <AiOutlineEyeInvisible onClick={toggle} />
-                }
+              <div className="text-2xl absolute bottom-3.5 right-5">
+                {open ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} />}
               </div>
             </div>
 
@@ -117,6 +130,6 @@ const MainSection = () => {
       }
     </div>
   );
-}
+};
 
 export default MainSection;
