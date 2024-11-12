@@ -30,72 +30,34 @@ const HomeAdm = () => {
   </h1>
 </div>
 
-          <div className="tabela flex flex-row md:flex-row md:gap-x-24 justify-center">
-            <ul className="mb-8 md:mb-0 space-y-8 text-center text-[#379E53]">
+<div className="tabela flex justify-center">
+  <ul className="flex flex-col gap-6 items-center text-center text-[#379E53]">
+    <li
+      onClick={() => navigate("/cadastroColaborador")}
+      className="w-96 h-18 font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl hover:bg-slate-300 cursor-pointer transition duration-300"
+    >
+      Cadastrar cliente
+      <img className="ml-auto h-6 object-cover" src={cadastro} alt="sinal de soma" />
+    </li>
 
-            <Link to="/cadastroColaborador" className="link text-inherit hover:text-#379E53">
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-between text-lg md:text-2xl shadow-md rounded-xl 
-              hover:bg-slate-300 ">Cadastrar cliente
-                <img
-                  className="object-cover object-center h-3 md:h-3 ml-2"
-                  src={cadastro}
-                  alt="sinal de soma"
-                />
-              </li>
-              </Link>
+    <li
+      onClick={() => navigate("/cadastroColaborador")}
+      className="w-96 h-18 font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl hover:bg-slate-300 cursor-pointer transition duration-300"
+    >
+      Cadastrar Funcionário
+      <img className="ml-auto h-6 object-cover" src={cadastro} alt="sinal de soma" />
+    </li>
 
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl *: hover:bg-slate-300 cursor-pointer">
-                Atualizar dados
-                <img
-                  className="object-cover object-center h-4 md:h-5 ml-2"
-                  src={atualizar}
-                  alt="setas indicando atualização"
-                />
-              </li>
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
-                Departamentos
-                <img
-                  className="object-cover object-center h-4 md:h-5 ml-2"
-                  src={departamento}
-                  alt="ícone de departamentos"
-                />
-              </li>
-            </ul>
-            <ul className="space-y-8 text-center text-[#379E53]">
-              
-            <Link to="/cadastroColaborador" className="link text-inherit hover:text-#379E53">
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-between text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
-                Cadastrar Funcionário
-                <img
-                  className="object-cover object-center h-4 md:h-3 ml-2"
-                  src={cadastro}
-                  alt="sinal de soma"
-                />
-              </li>
-              </Link>
-              
-              <li 
-                onClick={() => navigate("/admin-tickets")}
-                className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer"
-              >
-                Tickets
-                <img
-                  className="object-cover object-center h-4 md:h-5 ml-2"
-                  src={ticket}
-                  alt="ícone de ticket"
-                />
-              </li>
-              
-              <li className="font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl  hover:bg-slate-300 cursor-pointer">
-                Histórico
-                <img
-                  className="object-cover object-center h-4 md:h-5 ml-2"
-                  src={historico}
-                  alt="ícone de histórico"
-                />
-              </li>
-            </ul>
-          </div>
+    <li
+      onClick={() => navigate("/admin-tickets")}
+      className="w-96 h-18 font-bold bg-[#F4F4F4] p-4 flex items-center justify-center text-lg md:text-2xl shadow-md rounded-xl hover:bg-slate-300 cursor-pointer transition duration-300"
+    >
+      Tickets
+      <img className="ml-auto h-6 object-cover" src={ticket} alt="ícone de ticket" />
+    </li>
+  </ul>
+</div>
+
         </div>
       </section>
 
