@@ -15,22 +15,56 @@ const MainSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false)
+  const [emailError, setEmailError] = useState('');
+
+  const handleEmailChange = (event) => {
+    const inputEmail = event.target.value;
+    setEmail(inputEmail);
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(inputEmail)) {
+      setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
+
+    } else {
+      setEmailError('');
+    }
+  };
+
+  // Função para formatar o telefone no formato (DD) 99999-9999
+  const formatarTelefone = (valor) => {
+    // Remove tudo que não for número
+    valor = valor.replace(/\D/g, '');
+
+    if (valor.length <= 2) {
+      return `(${valor}`;
+    }
+    if (valor.length <= 6) {
+      return `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+    }
+    return `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7, 11)}`;
+  };
+
+  const handleTelefoneChange = (e) => {
+    const { value } = e.target;
+    setTelefone(formatarTelefone(value));
+  };
+
+  // Função para manipular a mudança no campo de nome completo
+  const handleNomeCompletoChange = (e) => {
+    const value = e.target.value;
+
+    // Expressão regular que verifica se o valor contém números
+    const regex = /[0-9]/;
+
+    // Se o valor não contiver números, atualiza o estado
+    if (!regex.test(value)) {
+      setNomeCompleto(value);
+    }
+  };
 
   const toggle = () => {
     setOpen(!open)
   }
-
-  const handleNomeCompletoChange = (event) => {
-    setNomeCompleto(event.target.value);
-  };
-
-  const handleTelefoneChange = (event) => {
-    setTelefone(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
 
   const handleSenhaChange = (event) => {
     setSenha(event.target.value);
@@ -41,6 +75,11 @@ const MainSection = () => {
   };
 
   const handleCadastrarClick = async () => {
+    if (emailError || !email) {
+      alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
+      return;
+    }
+
     if (isEquals(senha, confirmeSenha)) {
       setIsLoading(true);
 
@@ -104,25 +143,24 @@ const MainSection = () => {
               Cadastre-se
             </div>
             <div className="su-input w-full max-w-sm mb-3">
-              <label className="ls-text text-sm font-semibold">
-                Nome completo:
-              </label>
+              <label className="ls-text text-sm font-semibold">Nome completo:</label>
               <input
                 className="su-form-field w-full py-2 px-3 text-lg border border-[#379E53] rounded-lg"
                 type="text"
                 value={nomeCompleto}
                 onChange={handleNomeCompletoChange}
+                placeholder="Digite seu nome completo"
               />
             </div>
             <div className="su-input w-full max-w-sm mb-3">
-              <label className="ls-text text-sm font-semibold">
-                Telefone:
-              </label>
+              <label className="ls-text text-sm font-semibold">Telefone:</label>
               <input
                 className="su-form-field w-full py-2 px-3 text-lg border border-[#379E53] rounded-lg"
                 type="tel"
                 value={telefone}
                 onChange={handleTelefoneChange}
+                maxLength="15"
+                placeholder="(81) 99999-9999"
               />
             </div>
             <div className="su-input w-full max-w-sm mb-3">
@@ -130,11 +168,13 @@ const MainSection = () => {
                 Email:
               </label>
               <input
-                className="su-form-field w-full py-2 px-3 text-lgl border border-[#379E53] rounded-lg"
+                className={`w-full px-3 py-3 text-lg text-gray-600 border ${emailError ? 'border-red-600' : 'border-green-600'} rounded-lg focus:outline-none focus:ring ${emailError ? 'focus:ring-red-300' : 'focus:ring-green-300'}`}
                 type="email"
                 value={email}
                 onChange={handleEmailChange}
+                placeholder="exemplo@dominio.com"
               />
+              {emailError && <p className="text-red-600 text-sm mt-2">{emailError}</p>}
             </div>
             <div className="su-input w-full max-w-sm mb-3 relative">
               <label className="ls-text text-sm font-semibold">
@@ -170,12 +210,12 @@ const MainSection = () => {
                 }
               </div>
             </div>
-            <div className="mt-3 flex items-center">
+            {/* <div className="mt-3 flex items-center">
               <input type="checkbox" className="border rounded-lg mr-2 border-[#379E53]" />
               <span className='text-xs'>
                 Eu aceito os <a href="#" className="text-custom-color font-semibold text-[#379E53]">Termos de uso</a> & <a href="#" className="text-custom-color font-semibold text-[#379E53]">Privacy Policy</a>
               </span>
-            </div>
+            </div> */}
             <div className="mt-4">
               <button
                 className="bg-green-500 py-2 px-6 text-center text-white rounded-lg hover:bg-green-600 transition duration-300 block mx-auto text-lg"

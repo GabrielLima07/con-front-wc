@@ -21,7 +21,6 @@ const MainSection = () => {
     const inputEmail = event.target.value;
     setEmail(inputEmail);
 
-    // Verificação do formato do e-mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(inputEmail)) {
       setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
