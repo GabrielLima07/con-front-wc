@@ -11,12 +11,25 @@ import Loading from "../Loading/Loading";
 const CadastroCliente = () => {
 
     const [isLoading, setIsLoading] = useState(false);
-
     const [nomeCliente, setNomeCliente] = useState('');
     const [emailCliente, setEmailCliente] = useState('');
     const [senhaCliente, setSenhaCliente] = useState('');
     const [telefoneCliente, setTelefoneCliente] = useState('');
     const [senhaRepetidaCliente, setSenhaRepetidaCliente] = useState('');
+    const [emailError, setEmailError] = useState('');
+
+    const formatarTelefone = (valor) => {
+        // Remove tudo que não for número
+        valor = valor.replace(/\D/g, '');
+    
+        if (valor.length <= 2) {
+          return `(${valor}`;
+        }
+        if (valor.length <= 6) {
+          return `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+        }
+        return `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7, 11)}`;
+    };
 
     //Função para mostrar senha
     const [open, setOpen] = useState(false)
@@ -25,17 +38,33 @@ const CadastroCliente = () => {
         setOpen(!open)
     }
 
-    const handleNomeClienteChange = (event) => {
-        setNomeCliente(event.target.value);
+    const handleNomeClienteChange = (e) => {
+        const value = e.target.value;
+    
+        const regex = /^[A-Za-zÀ-ÿ\s]*$/;
+    
+        if (regex.test(value)) {
+            setNomeCliente(e.target.value);
+        }
     };
 
     const handleEmailClienteChange = (event) => {
+        const inputEmail = event.target.value;
         setEmailCliente(event.target.value);
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(inputEmail)) {
+          setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
+    
+        } else {
+          setEmailError('');
+        }
     };
 
     const handleTelefoneClienteChange = (event) => {
-        setTelefoneCliente(event.target.value);
-    }
+        const { value } = event.target;
+        setTelefoneCliente(formatarTelefone(value));
+    };
 
     const handleSenhaClienteChange = (event) => {
         setSenhaCliente(event.target.value);
@@ -46,6 +75,11 @@ const CadastroCliente = () => {
     };
 
     const handleCadastroClienteClick = async () => {
+        if (emailError || !emailCliente) {
+            alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
+            return;
+        }
+        
         if (isEquals(senhaCliente, senhaRepetidaCliente)) {
             setIsLoading(true);
 
@@ -108,11 +142,12 @@ const CadastroCliente = () => {
                         <div className="flex">
                             <div className="flex flex-col w-[45%] mt-5 mb-2">
                                 <label className="text-gray-600 text-xl">Nome Completo</label>
-                                <input type="text" id="input-nome" value={nomeCliente} onChange={handleNomeClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="input-nome" placeholder="José Silva" value={nomeCliente} onChange={handleNomeClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
                                 <label className="text-gray-600 text-xl">E-mail</label>
-                                <input type="text" id="input-email" value={emailCliente} onChange={handleEmailClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="input-email" placeholder="Exemplo@dominio.com" value={emailCliente} onChange={handleEmailClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                {emailError && <p className="text-red-600 text-sm -mt-4 mb-2">{emailError}</p>}
                                 <label className="text-gray-600 text-xl">Telefone</label>
-                                <input type="text" id="telefone" value={telefoneCliente} onChange={handleTelefoneClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="telefone" placeholder="(81) 99999-9999" value={telefoneCliente} onChange={handleTelefoneClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
                             </div>
 
                             <div className="flex flex-col w-[45%] mt-5 mb-2 ml-7">

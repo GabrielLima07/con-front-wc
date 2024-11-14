@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { isEquals } from './../../utils/isEquals';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import signUpEmployee from './../../services/auth/signUpEmployee';
@@ -8,6 +8,7 @@ import instagramLogo from "../../assets/Home/instagram.png";
 import facebookLogo from "../../assets/Home/facebook.png";
 import AdminNavbar from "../AllNavbars/AdminNavbar/AdminNavbar";
 import Loading from "../Loading/Loading";
+import getAllDepartments from "../../services/department/getAllDepartmens";
 
 const cadastroColaborador = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,9 @@ const cadastroColaborador = () => {
     const [senhaColaborador, setSenhaColaborador] = useState('');
     const [senhaRepetidaColaborador, setSenhaRepetidaColaborador] = useState('');
     const [departamento, setDepartament] = useState('');
+    const [departments, setDepartments] = useState([]);
+    const [departmentId, setDepartmentId] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     //Cadastro dos clientes
     const [nomeCliente, setNomeCliente] = useState('');
@@ -29,18 +33,54 @@ const cadastroColaborador = () => {
     //Função para mostrar senha
     const [open, setOpen] = useState(false)
 
+    useEffect(() => {
+        const fetchDepartments = async () => {
+          const data = await getAllDepartments();
+          setDepartments(data);
+        };
+    
+        fetchDepartments();
+      }, []);
+
     const toggle = () => {
         setOpen(!open)
     }
 
+    const formatarTelefone = (valor) => {
+        // Remove tudo que não for número
+        valor = valor.replace(/\D/g, '');
+    
+        if (valor.length <= 2) {
+          return `(${valor}`;
+        }
+        if (valor.length <= 6) {
+          return `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+        }
+        return `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7, 11)}`;
+    };
 
     //Funções para funcionário
-    const handleNomeColaboradorChange = (event) => {
-        setNomeColaborador(event.target.value);
+    const handleNomeColaboradorChange = (e) => {
+        const value = e.target.value;
+    
+        const regex = /^[A-Za-zÀ-ÿ\s]*$/;
+    
+        if (regex.test(value)) {
+          setNomeColaborador(value);
+        }
     };
 
     const handleEmailColaboradorChange = (event) => {
+        const inputEmail = event.target.value;
         setEmailColaborador(event.target.value);
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(inputEmail)) {
+          setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
+    
+        } else {
+          setEmailError('');
+        }
     };
 
     const handleSenhaColaboradorChange = (event) => {
@@ -56,17 +96,33 @@ const cadastroColaborador = () => {
     }
 
     //Funções para cliente
-    const handleNomeClienteChange = (event) => {
-        setNomeCliente(event.target.value);
+    const handleNomeClienteChange = (e) => {
+        const value = e.target.value;
+    
+        const regex = /^[A-Za-zÀ-ÿ\s]*$/;
+    
+        if (regex.test(value)) {
+            setNomeCliente(e.target.value);
+        }
     };
 
     const handleEmailClienteChange = (event) => {
+        const inputEmail = event.target.value;
         setEmailCliente(event.target.value);
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(inputEmail)) {
+          setEmailError("Por favor, insira um email válido.\nExemplo: exemplo@dominio.com");
+    
+        } else {
+          setEmailError('');
+        }
     };
 
     const handleTelefoneClienteChange = (event) => {
-        setTelefoneCliente(event.target.value);
-    }
+        const { value } = event.target;
+        setTelefoneCliente(formatarTelefone(value));
+    };
 
     const handleSenhaClienteChange = (event) => {
         setSenhaCliente(event.target.value);
@@ -78,10 +134,16 @@ const cadastroColaborador = () => {
 
     //Função para o botão de cadastro do funcionário
     const handleCadastroColaboradorClick = async () => {
+        if (emailError || !emailColaborador) {
+            alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
+            return;
+        }
+
         if (isEquals(senhaColaborador, senhaRepetidaColaborador)) {
             setIsLoading(true);
 
             let data = getFormData();
+            console.log(data)
 
             try {
                 let response = await signUpEmployee(data);
@@ -103,6 +165,11 @@ const cadastroColaborador = () => {
 
     //Função para o botão de cadastro do cliente
     const handleCadastroClienteClick = async () => {
+        if (emailError || !emailCliente) {
+            alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
+            return;
+        }
+
         if (isEquals(senhaCliente, senhaRepetidaCliente)) {
             setIsLoading(true);
 
@@ -131,7 +198,7 @@ const cadastroColaborador = () => {
             name: nomeColaborador,
             password: senhaColaborador,
             role: "EMPLOYEE",
-            departmentName: departamento
+            departmentName: departmentId
         }
     }
 
@@ -180,11 +247,11 @@ const cadastroColaborador = () => {
                         <div className="flex">
                             <div className="flex flex-col w-[45%] mt-5 mb-2">
                                 <label className="text-gray-600 text-xl">Nome Completo</label>
-                                <input type="text" id="input-nome" value={nomeColaborador} onChange={handleNomeColaboradorChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="input-nome" placeholder="José Silva" value={nomeColaborador} onChange={handleNomeColaboradorChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
 
                                 <label className="text-gray-600 text-xl">E-mail</label>
-                                <input type="text" id="input-email" value={emailColaborador} onChange={handleEmailColaboradorChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
-
+                                <input type="text" id="input-email" placeholder="exemplo@dominio.com" value={emailColaborador} onChange={handleEmailColaboradorChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                {emailError && <p className="text-red-600 text-sm -mt-4 mb-2">{emailError}</p>}
                                 <div className="su-input relative">
                                     <label className="text-gray-600 text-xl">Senha de Acesso</label>
                                     <input type={(open === false ? 'password' : 'text')} id="input-senha" value={senhaColaborador} onChange={handleSenhaColaboradorChange}
@@ -213,11 +280,18 @@ const cadastroColaborador = () => {
 
                             <div className="flex flex-col w-[45%] mt-5 mb-2 ml-7">
                                 <label className="text-gray-600 text-xl">Departamento</label>
-                                <input type="text" id="input-departamento" list="departamento" value={departamento} onChange={handleDepartamentoChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
-                                <datalist id="departamento">
-                                    <option value="Financeiro"></option>
-                                    <option value="Design"></option>
-                                </datalist>
+                                {/* <input type="text" id="input-departamento" list="departamento" value={departamento} onChange={handleDepartamentoChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" /> */}
+                                <select
+                                  id="department"
+                                  value={departmentId}
+                                  onChange={(e) => setDepartmentId(e.target.value)}
+                                  className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none"
+                                >
+                                    <option value="">Selecione um departamento</option>
+                                  {departments.map(department => (
+                                    <option key={department.id} value={department.name}>{department.name}</option>
+                                  ))}
+                                </select>
                             </div>
                         </div>
 
@@ -244,11 +318,12 @@ const cadastroColaborador = () => {
                         <div className="flex">
                             <div className="flex flex-col w-[45%] mt-5 mb-2">
                                 <label className="text-gray-600 text-xl">Nome Completo</label>
-                                <input type="text" id="input-nome" value={nomeCliente} onChange={handleNomeClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="input-nome" placeholder="José Silva" value={nomeCliente} onChange={handleNomeClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
                                 <label className="text-gray-600 text-xl">E-mail</label>
-                                <input type="text" id="input-email" value={emailCliente} onChange={handleEmailClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="input-email" placeholder="exemplo@dominio.com" value={emailCliente} onChange={handleEmailClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                {emailError && <p className="text-red-600 text-sm -mt-4 mb-2">{emailError}</p>}
                                 <label className="text-gray-600 text-xl">Telefone</label>
-                                <input type="text" id="telefone" value={telefoneCliente} onChange={handleTelefoneClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
+                                <input type="text" id="telefone" placeholder="(81) 99999-9999" value={telefoneCliente} onChange={handleTelefoneClienteChange} className="pl-2 text-gray-600 h-[6vh] text-lg rounded-full border border-green-700 mb-4 outline-none" />
                             </div>
 
                             <div className="flex flex-col w-[45%] mt-5 mb-2 ml-7">
