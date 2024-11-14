@@ -49,15 +49,12 @@ const MainSection = () => {
     setTelefone(formatarTelefone(value));
   };
 
-  // Função para manipular a mudança no campo de nome completo
   const handleNomeCompletoChange = (e) => {
     const value = e.target.value;
 
-    // Expressão regular que verifica se o valor contém números
-    const regex = /[0-9]/;
+    const regex = /^[A-Za-zÀ-ÿ\s]*$/;
 
-    // Se o valor não contiver números, atualiza o estado
-    if (!regex.test(value)) {
+    if (regex.test(value)) {
       setNomeCompleto(value);
     }
   };
@@ -149,7 +146,7 @@ const MainSection = () => {
                 type="text"
                 value={nomeCompleto}
                 onChange={handleNomeCompletoChange}
-                placeholder="Digite seu nome completo"
+                placeholder="José Silva"
               />
             </div>
             <div className="su-input w-full max-w-sm mb-3">
