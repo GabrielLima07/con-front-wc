@@ -49,7 +49,7 @@ function CreateTicket() {
       department: { id: departmentId },
       title,
       description,
-      status: 'Pendente',
+      status: "Pendente",
       date: getCurrentDate(),
       customer: {id : id} ,
       product: null,
@@ -59,7 +59,7 @@ function CreateTicket() {
     const ticketDataWithoutDepartment = {
       title,
       description,
-      status: 'Pendente',
+      status: "Pendente",
       date: getCurrentDate(),
       customer: {id : id} ,
       product: null,
@@ -122,6 +122,7 @@ function CreateTicket() {
                     type="text"
                     id="title"
                     value={title}
+                    maxLength={255}
                     onChange={(e) => setTitle(e.target.value)}
                     className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                     required

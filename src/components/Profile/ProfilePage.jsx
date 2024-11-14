@@ -5,6 +5,7 @@ import fetchCustomerData from './../../services/customer/fetchCustomerData';
 import Loading from '../Loading/Loading';
 import perfilImg from './../../assets/Login/perfil.png';
 import ModalCliente from '../Modais/ModalClient/ModalCliente';
+import Modal from './Modal';
 
 const ProfilePage = () => {
   const [tickets, setTickets] = useState([]);
@@ -98,7 +99,7 @@ const ProfilePage = () => {
               </tr>
             </thead>
             <tbody>
-              {tickets.slice(0, 10).map(ticket => (
+            {tickets.slice(0, 100).map(ticket => (
                 <tr 
                   className="hover:bg-gray-100 transition duration-150" 
                   key={ticket.id}
@@ -106,7 +107,7 @@ const ProfilePage = () => {
                 >
                   <td className="px-4 py-3 font-medium text-[#379E53]">{ticket.id}</td>
                   <td className="px-4 py-3">{ticket.date}</td>
-                  <td className="px-4 py-3">{ticket.title}</td>
+                  <td className="px-4 py-3 overflow-hidden whitespace-nowrap text-ellipsis max-w-xs">{ticket.title}</td>
                   <td className={`px-4 py-3 ${getStatusClass(ticket.status)}`}>{ticket.status}</td>
                 </tr>
               ))}
@@ -115,6 +116,11 @@ const ProfilePage = () => {
         </div>
       </div>
       <Footer />
+      <Modal
+        isOpen={showModal}
+        onClose={closeModal}
+        ticket={ticketModal}
+      />
     </div>
   );
 };
