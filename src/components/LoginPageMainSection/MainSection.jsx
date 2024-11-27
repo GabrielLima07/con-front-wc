@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import profilePic from "../../assets/Login/perfil.png";
+import ReCAPTCHA from 'react-google-recaptcha';
 import login from '../../services/auth/login';
 import Loading from '../Loading/Loading';
 
@@ -12,6 +12,13 @@ const MainSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const RECAPTCHA_KEY = import.meta.env.VITE_API_RECAPTCHA_KEY;
+
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+    console.log("Captcha value:", value);
+  };
 
   const toggle = () => {
     setOpen(!open);
@@ -39,13 +46,20 @@ const MainSection = () => {
       alert("Por favor, insira um email válido. Exemplo: exemplo@dominio.com");
       return;
     }
-
+  
+    if (!captchaValue) {
+      alert("Por favor, complete o reCAPTCHA.");
+      return;
+    }
+  
     setIsLoading(true);
+  
     let data = {
-      "email": email,
-      "password": senha
+      email: email,
+      password: senha,
+      recaptchaToken: captchaValue
     };
-
+  
     try {
       let response = await login(data);
       if (response && response.token && response.userType && response.userId) {
@@ -53,7 +67,7 @@ const MainSection = () => {
         sessionStorage.setItem("userType", response.userType);
         sessionStorage.setItem("userId", response.userId);
         sessionStorage.setItem("isLogged", true);
-
+  
         console.log("Login bem-sucedido!");
         redirectAfterLogin(response.userType);
       } else {
@@ -65,6 +79,7 @@ const MainSection = () => {
       setIsLoading(false);
     }
   };
+  
 
   const handleSignupClick = () => {
     navigate("/signup");
@@ -88,9 +103,6 @@ const MainSection = () => {
           :
           <section className="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl flex flex-col items-center">
             <h1 className="text-2xl font-bold text-gray-700 mb-6">Bem vindo de volta!</h1>
-            <div className="w-full flex justify-center mb-6">
-              <img src={profilePic} alt="Profile" className="w-1/6 border border-green-600 rounded-full" />
-            </div>
             <div className="w-full max-w-sm mb-4">
               <label className="block text-gray-700 text-lg mb-2">Email</label>
               <input
@@ -113,6 +125,12 @@ const MainSection = () => {
                 {open ? <AiOutlineEyeInvisible onClick={toggle} /> : <AiOutlineEye onClick={toggle} />}
               </div>
             </div>
+
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_KEY}
+              onChange={handleCaptchaChange}
+              className="mt-4 mb-8 "
+            />
 
             <div className="w-full max-w-sm mb-4 flex justify-center">
               <button
