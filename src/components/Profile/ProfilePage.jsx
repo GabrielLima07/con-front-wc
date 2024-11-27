@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import CustomerNavbar from './../AllNavbars/CustomerNavbar/CustomerNavbar';
 import Footer from './Footer';
 import fetchCustomerData from './../../services/customer/fetchCustomerData';
@@ -9,6 +10,7 @@ import Modal from './Modal';
 
 const ProfilePage = () => {
   const [tickets, setTickets] = useState([]);
+  
   const [customerData, setCustomerData] = useState({ name: '', email: '', phone: '' });
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +27,7 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
+    
     const fetchData = async () => {
       const userId = sessionStorage.getItem("userId");
       if (!userId) {
