@@ -8,8 +8,6 @@ import createTicket from '../../services/ticket/postTicketData';
 import Loading from '../Loading/Loading';
 import getAllDepartments from '../../services/department/getAllDepartmens';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const token = sessionStorage.getItem("token");
 
 function CreateTicket() {
   const [departments, setDepartments] = useState([]);
@@ -38,6 +36,8 @@ function CreateTicket() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(departmentId)
 
     // Validações
     if (!departmentId || !title || !description) {
@@ -68,8 +68,15 @@ function CreateTicket() {
 
     try {
       setIsLoading(true)
+      
+      let responseStatus;
+
       // Chama a função para criar o ticket
-      const responseStatus = await createTicket(departmentId == '' ? ticketData : ticketDataWithoutDepartment);
+      if(departmentId === "Sem departamento") {
+        responseStatus = await createTicket(ticketDataWithoutDepartment);
+      } else {
+        responseStatus = await createTicket(ticketData);
+      }
 
       if (responseStatus === '201') {
         alert('Ticket enviado com sucesso!');
