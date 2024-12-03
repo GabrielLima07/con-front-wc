@@ -96,12 +96,12 @@ const MainSection = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 pt-8 pb-8">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 pt-8 pb-8 mt-12">
       {
         isLoading
           ? <Loading />
           :
-          <section className="bg-white rounded-lg shadow-lg p-8 w-full max-w-2xl flex flex-col items-center">
+          <section className="bg-white rounded-lg shadow-lg p-8 w-2/4 max-w-2xl flex flex-col items-center">
             <h1 className="text-2xl font-bold text-gray-700 mb-6">Bem vindo de volta!</h1>
             <div className="w-full max-w-sm mb-4">
               <label className="block text-gray-700 text-lg mb-2">Email</label>

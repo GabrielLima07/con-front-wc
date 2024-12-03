@@ -116,7 +116,7 @@ const MainSection = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center m-4 mt-20 md:mt-4">
+    <div className="flex flex-wrap justify-center items-center m-4 mt-20 pt-20 md:mt-4">
       <section id="su-col-one" className="flex flex-col justify-center items-center gap-y-8 w-full md:w-1/2 mb-8">
         <div>
           <h1 className="text-4xl text-green-500 font-bold" id="su-col-one-main-title">
