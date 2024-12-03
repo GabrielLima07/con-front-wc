@@ -10,30 +10,42 @@ import pen from "../../assets/Home/pen.png"
 import light from "../../assets/Home/light.png"
 import insta from "../../assets/Home/instagram.png"
 import face from "../../assets/Home/facebook.png"
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleSignupClick = () => {
+    navigate("/signup")
+  }
+
+  const handleLoginClick = () => {
+    navigate("/login")
+  }
+
+  const handleLogoClick = () => {
+    navigate("/")
+  }
+
   return (
     <div>
-      <nav className="menu-content p-4 ">
-        <div className="menu flex justify-between items-center p-4 ">
-          <h2 id="logo" className="text-4xl ml-4  font-bold">WayClient</h2>
-          <div className="textos flex space-x-4 ">
-            <h3><Link className="link text-inherit hover:text-#5B5B5B" to="#">Central de Ajuda</Link></h3>
-            <h3><Link className="link text-inherit  hover:text-#5B5B5B" to="#">FAQ</Link></h3>
-            <h3><Link className="link text-inherit  hover:text-#5B5B5B" to="#">Contato</Link></h3>
-            <h3><Link to="/login" className="link text-inherit  hover:text-#5B5B5B">Login</Link></h3>
-            <h3  id="cadastre"><Link to="/signup" className="link text-inherit  hover:text-white
-          ">Cadastre-se</Link></h3>
+      <nav className="menu-content navbar fixed top-0 left-0 w-full z-20">
+        <div className="menu flex justify-between items-center p-3 ">
+          <h2 id="logo" className="text-3xl ml-4" onClick={handleLogoClick}>WayClient</h2>
+
+            <div className="textos flex">
+              <h3 className="link text-inherit border-2 py-1.5 px-3 border-white rounded-3xl hover:text-#379E53 hover:bg-white" onClick={handleLoginClick}>Login</h3>
+              <h3 id={"cadastre"} className="link text-inherit  hover:text-white" onClick={handleSignupClick}>Cadastre-se</h3>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
       <section className="pc-content flex flex-col md:flex-row justify-evenly items-center p-10 md:p-20">
-        <div className="imgPc bg-pchome bg-cover bg-no-repeat ">
+        <div className="imgPc bg-pchome bg-cover bg-no-repeat mt-12">
           <img className="object-cover object-center w-70 h-auto" src={pchome} alt="PC Home" />
         </div>
-        <div className="frases flex items-center text-center md:text-left content-center mb-28 relative md:ml-10">
+        <div className="frases flex items-center text-center md:text-left content-center mb-28 mt-36   relative md:ml-10">
           <h1 className="text-2xl md:text-4xl lg:text-6xl text-#379E53">
             <span className="font-extrabold text-4xl md:text-5xl lg:text-7xl ">WayClient</span>
             <p className="text-#5B5B5B text-2xl text-center font-bold mt-3"><span className="text-#379E53">-</span> espera e <span className="text-green-500">+</span> vendas, totalmente <br /> automático.</p>
