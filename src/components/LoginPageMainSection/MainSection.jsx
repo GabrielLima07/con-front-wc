@@ -71,9 +71,11 @@ const MainSection = () => {
         redirectAfterLogin(response.userType);
       } else {
         console.error("A resposta da API não contém os campos esperados.");
+        alert("Erro ao fazer login, verifique os campos e tente novamente.")
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
+      alert("Erro ao fazer login, verifique os campos e tente novamente.")
     } finally {
       setIsLoading(false);
     }

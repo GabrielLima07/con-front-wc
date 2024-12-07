@@ -73,7 +73,7 @@ const AdminNavbar = () => {
           </div>
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-between">
             <div className="flex flex-shrink-0 text-right ">
-             <h1 onClick={() => navigate("/adminHome")} className='text-white pb-1 text-3xl'>WayClient</h1>
+             <h1 onClick={() => navigate("/adminHome")} className='text-white pb-1 text-3xl cursor-pointer'>WayClient</h1>
             </div>
             <div className="hidden md:ml-6 md:block ">
               <div className="flex space-x-4 text-white mt-1">
