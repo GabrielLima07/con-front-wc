@@ -170,14 +170,8 @@ export default function Modal({
                   </div>
 
                   {/* Botões de confirmação */}
-                  <div className="flex mt-6 space-x-4">
-                    <button
-                      className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowDepartmentList(false)}
-                    >
-                      Cancelar
-                    </button>
+                  <div className="flex flex-col mt-6">
+                    
                     <button
                       className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
                       type="button"
@@ -185,6 +179,13 @@ export default function Modal({
                       disabled={!selectedDepartment}
                     >
                       Confirmar
+                    </button>
+                    <button
+                      className="bg-transparent border border-black text-black mt-3 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowDepartmentList(false)}
+                    >
+                      Cancelar
                     </button>
                   </div>
                 </div>
@@ -214,21 +215,21 @@ export default function Modal({
                   </div>
                   
                   {/* Botões de confirmação */}
-                  <div className="flex mt-6 space-x-4">
-                    <button
-                      className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowEmployeeList(false)}
-                    >
-                      Cancelar
-                    </button>
-                    <button
+                  <div className="flex flex-col mt-6">
+                  <button
                       className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
                       type="button"
                       onClick={handleConfirmEmployee}
                       disabled={!selectedEmployee}
                     >
                       Confirmar
+                    </button>
+                    <button
+                      className="bg-transparent border border-black text-black mt-3 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowEmployeeList(false)}
+                    >
+                      Cancelar
                     </button>
                   </div>
                 </div>

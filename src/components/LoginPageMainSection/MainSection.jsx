@@ -17,7 +17,6 @@ const MainSection = () => {
 
   const handleCaptchaChange = (value) => {
     setCaptchaValue(value);
-    console.log("Captcha value:", value);
   };
 
   const toggle = () => {
