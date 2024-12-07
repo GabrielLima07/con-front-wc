@@ -24,7 +24,7 @@ const MainContent = () => {
     const fetchDepartments = async () => {
       const data = await getDepartments();
       setDepartments(data);
-    }
+    };
 
     fetchAllTickets();
     fetchDepartments();
@@ -44,11 +44,19 @@ const MainContent = () => {
 
   const handleRowClick = (ticket) => {
     setTicketModal(ticket);
-    setShowModal(true)
-  }
+    setShowModal(true);
+  };
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const updateTicketData = (updatedTicket) => {
+    setTickets((prevTickets) => 
+      prevTickets.map((ticket) => 
+        ticket.id === updatedTicket.id ? updatedTicket : ticket
+      )
+    );
   };
 
   // filtrando tickets por departamento, status e input de busca
@@ -138,7 +146,7 @@ const MainContent = () => {
         <hr className="bg-gray-400 border-gray-400"/>
       </div>
 
-      {/* busca por id ou noem */}
+      {/* busca por id ou nome */}
       <div className="px-28">
         <input 
           className="w-80 h-8 border border-gray-300 p-2 text-xs" 
@@ -152,64 +160,54 @@ const MainContent = () => {
       {/* tabela */}
       <div className="flex flex-col items-center relative overflow-x-auto">
         {
-          tickets.length == 0 
+          tickets.length === 0 
           ? 
           <Loading />
-          :
-        
-        <table className="w-10/12 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-300">
-          <thead className="text-gray-900 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3"> id </th>
-              <th scope="col" className="px-6 py-3"> Data de abertura </th>
-              <th scope="col" className="px-6 py-3"> Título </th>
-              <th scope="col" className="px-6 py-3"> Cliente </th>
-              <th scope="col" className="px-6 py-3"> Funcionario </th>
-              {/* <th scope="col" className="px-6 py-3"> Serviço </th>
-              <th scope="col" className="px-6 py-3"> Produto </th> */}
-              <th scope="col" className="px-6 py-3"> Status </th>
-              <th scope="col" className="px-6 py-3"> Departamento </th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-            filteredTickets.map((ticket) => (
-              <tr 
-                className="hover:bg-gray-50 dark:hover:bg-gray-50 text-gray-600"
-                onClick={() => handleRowClick(ticket)}
-                key={ticket.id}
-              >
-                <th scope="row" className="px-6 py-4 whitespace-nowrap max-w-32 text-ellipsis overflow-hidden">
-                  {ticket.id}
-                </th>
-                <td className="px-6 py-4">
-                  {ticket.date}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap max-w-32 text-ellipsis overflow-hidden">
-                  {ticket.title}
-                </td>
-                <td className="px-6 py-4">
-                  {ticket.customerName}
-                </td>
-                {/* <td className="px-6 py-4">
-                  {ticket.service == null ? "Nenhum" : ticket.service.name}
-                </td>
-                <td className="px-6 py-4">
-                  {ticket.product == null ? "Nenhum" : ticket.product.name}
-                </td> */}
-                <td className="px-6 py-4">
-                  {ticket.employeeName}
-                </td>
-                <td className="px-6 py-4">
-                  {ticket.status}
-                </td>
-                <td className="px-6 py-4">
-                  {ticket.departmentName}
-                </td>
+          : 
+          <table className="w-10/12 text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-300">
+            <thead className="text-gray-900 uppercase bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3"> id </th>
+                <th scope="col" className="px-6 py-3"> Data de abertura </th>
+                <th scope="col" className="px-6 py-3"> Título </th>
+                <th scope="col" className="px-6 py-3"> Cliente </th>
+                <th scope="col" className="px-6 py-3"> Funcionario </th>
+                <th scope="col" className="px-6 py-3"> Status </th>
+                <th scope="col" className="px-6 py-3"> Departamento </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredTickets.map((ticket) => (
+                <tr 
+                  className="hover:bg-gray-50 dark:hover:bg-gray-50 text-gray-600"
+                  onClick={() => handleRowClick(ticket)}
+                  key={ticket.id}
+                >
+                  <th scope="row" className="px-6 py-4 whitespace-nowrap max-w-32 text-ellipsis overflow-hidden">
+                    {ticket.id}
+                  </th>
+                  <td className="px-6 py-4">
+                    {ticket.date}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap max-w-32 text-ellipsis overflow-hidden">
+                    {ticket.title}
+                  </td>
+                  <td className="px-6 py-4">
+                    {ticket.customerName}
+                  </td>
+                  <td className="px-6 py-4">
+                    {ticket.employeeName}
+                  </td>
+                  <td className="px-6 py-4">
+                    {ticket.status}
+                  </td>
+                  <td className="px-6 py-4">
+                    {ticket.departmentName}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         }
       </div>
       <div className="pb-16"></div>
@@ -221,6 +219,7 @@ const MainContent = () => {
         employees={departments}
         onAssignDepartment={putTicketDepartment}
         onAssignEmployee={putTicketEmployee}
+        updateTicketData={updateTicketData} // Função para atualizar os dados do ticket
       />
     </div>
   );
