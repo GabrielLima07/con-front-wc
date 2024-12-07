@@ -72,7 +72,7 @@ const SidebarAdm = () => {
                   <div className="linha-verde border border-green-500 opacity-40 mb-2"></div>
                   <p className="text-gray-600 text-xs">Situação dos tickets</p>
                   <p>Abertos: {tickets[dept.id]?.filter(ticket => ticket.status === 'Pendente').length || 0}</p>
-                  <p>Em atendimento: {tickets[dept.id]?.filter(ticket => ticket.status === 'Em Atendimento').length || 0}</p>
+                  <p>Em atendimento: {tickets[dept.id]?.filter(ticket => ticket.status === 'Em atendimento').length || 0}</p>
                   <p>Fechados: {tickets[dept.id]?.filter(ticket => ticket.status === 'Fechado').length || 0}</p>
                 </div>
   

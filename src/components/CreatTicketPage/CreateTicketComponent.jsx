@@ -85,8 +85,8 @@ function CreateTicket() {
         setTitle('');
         setDescription('');
       } else {
-        alert('Erro ao enviar o ticket. Tente novamente.');
-        console.log(responseStatus);
+        alert(responseStatus);
+        //console.log(responseStatus);
       }
     } catch (error) {
       console.log("Error creating ticket")

@@ -14,7 +14,7 @@ const createTicket = async (data) => {
     return JSON.stringify(response.status);
   } catch (error) {
     console.log('Erro ao criar o ticket:', error);
-    return error.response ? error.response.status : 'Erro inesperado!';
+    return error.response ? error.response.data : 'Erro inesperado!';
   }
 };
 

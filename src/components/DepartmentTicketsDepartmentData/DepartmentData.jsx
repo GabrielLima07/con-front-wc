@@ -76,10 +76,10 @@ const DepartmentData = () => {
         <section className='px-2 lg:px-4 py-2'>
           <h3 className='text-[#0e0e0e73] text-sm md:text-sm lg:text-base'>Situações dos Tickets</h3>
           <div className='flex flex-col gap-1 text-xs md:text-sm lg:text-base'>
-            <h3 className='text-inherit'>Abertos: {abertos ? abertos : 12}</h3>
-            <h3 className='text-inherit'>Em atendimento: {emAtendimento ? emAtendimento : 12}</h3>
-            <h3 className='text-inherit'>Em impedimento: {emImpedimento ? emImpedimento : 12}</h3>
-            <h3 className='text-inherit'>Fechados: {fechados ? fechados : 12}</h3>
+            <h3 className='text-inherit'>Abertos: {abertos ? abertos : 0}</h3>
+            <h3 className='text-inherit'>Em atendimento: {emAtendimento ? emAtendimento : 0}</h3>
+            <h3 className='text-inherit'>Em impedimento: {emImpedimento ? emImpedimento : 0}</h3>
+            <h3 className='text-inherit'>Fechados: {fechados ? fechados : 0}</h3>
           </div>
         </section>
 

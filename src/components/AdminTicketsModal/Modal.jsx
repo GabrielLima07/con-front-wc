@@ -7,7 +7,8 @@ export default function Modal({
   departments, 
   onAssignDepartment, 
   onAssignEmployee, 
-  onChangeEmployee 
+  onChangeEmployee,
+  updateTicketData  
 }) {
   const [showDepartmentList, setShowDepartmentList] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -44,7 +45,12 @@ export default function Modal({
   const handleConfirmDepartment = () => {
     if (selectedDepartment) {
       onAssignDepartment(ticket.id, selectedDepartment.id);
+      // Atualiza o ticket local com o departamento atribuído
+      const updatedTicket = { ...ticket, departmentName: selectedDepartment.name };
+      updateTicketData(updatedTicket); // Atualiza na lista
       setShowDepartmentList(false);
+      alert("Departamento designado com sucesso.")
+      onClose();
     }
   };
 
@@ -52,7 +58,12 @@ export default function Modal({
   const handleConfirmEmployee = () => {
     if (selectedEmployee) {
       onAssignEmployee(ticket.id, selectedEmployee.id);
+      // Atualiza o ticket local com o funcionário atribuído
+      const updatedTicket = { ...ticket, employeeName: selectedEmployee.name };
+      updateTicketData(updatedTicket); // Atualiza na lista
       setShowEmployeeList(false);
+      alert("Funcionário designado com sucesso.")
+      onClose();
     }
   };
 
@@ -159,14 +170,8 @@ export default function Modal({
                   </div>
 
                   {/* Botões de confirmação */}
-                  <div className="flex mt-6 space-x-4">
-                    <button
-                      className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowDepartmentList(false)}
-                    >
-                      Cancelar
-                    </button>
+                  <div className="flex flex-col mt-6">
+                    
                     <button
                       className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
                       type="button"
@@ -174,6 +179,13 @@ export default function Modal({
                       disabled={!selectedDepartment}
                     >
                       Confirmar
+                    </button>
+                    <button
+                      className="bg-transparent border border-black text-black mt-3 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowDepartmentList(false)}
+                    >
+                      Cancelar
                     </button>
                   </div>
                 </div>
@@ -203,21 +215,21 @@ export default function Modal({
                   </div>
                   
                   {/* Botões de confirmação */}
-                  <div className="flex mt-6 space-x-4">
-                    <button
-                      className="bg-transparent border border-black text-black font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowEmployeeList(false)}
-                    >
-                      Cancelar
-                    </button>
-                    <button
+                  <div className="flex flex-col mt-6">
+                  <button
                       className="bg-gray-500 text-white font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-600 outline-none focus:outline-none ease-linear transition-all duration-150"
                       type="button"
                       onClick={handleConfirmEmployee}
                       disabled={!selectedEmployee}
                     >
                       Confirmar
+                    </button>
+                    <button
+                      className="bg-transparent border border-black text-black mt-3 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:bg-gray-200 outline-none focus:outline-none ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowEmployeeList(false)}
+                    >
+                      Cancelar
                     </button>
                   </div>
                 </div>
