@@ -9,7 +9,7 @@ const Footer = () => {
         <footer className="bg-[#83B791] py-4 flex flex-col md:flex-row justify-between items-center px-4">
          
             <section className="titulo mb-4 md:mb-0 w-full md:w-auto text-center md:text-left ml-96 " >
-                <h5 className="text-white text-sm sm:text-base md:text-xl font-bold ">
+                <h5 className="text-white text-base sm:text-base md:text-xl font-bold ">
                     Por que o WayClient?
                 </h5>
             </section>
