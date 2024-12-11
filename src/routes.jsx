@@ -44,7 +44,7 @@ function Main() {
         <Route path="/modalCliente" element={<ModalCliente/>}/> 
         <Route path="*" element={<Erro/>}/> 
         <Route path="/dashboard" element={<DashboardComponent />} />
-
+    
         {/* Apenas admin */}
         <Route
           path="/cadastroColaborador"
